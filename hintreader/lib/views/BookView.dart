@@ -55,7 +55,7 @@ class _BookViewState extends  State<BookView> {
 
 
   portraitOrientation() {
-    String pic = "assets/portrait.jpg";
+    String pic = "assets/portrait2.jpg";
     if (widget.darkmode) {
       pic = "assets/main_icon.png";
     }
