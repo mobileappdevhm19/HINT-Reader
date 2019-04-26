@@ -11,23 +11,27 @@ class BookshelView extends StatefulWidget {
 }
 
 class _BookshelViewState extends State<BookshelView> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+        appBar: AppBar(
+          title: Text(widget.title),
+        ),
+        body: Container(
+            child: ConstrainedBox(
+                constraints: BoxConstraints.expand(),
+                child: FlatButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (BuildContext context) =>
+                              BookView("My Book")));
 
-        title: Text(widget.title),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (BuildContext context)
-              => BookView("My Book")));
-        },
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+                    },
+                    child: Image.asset("assets/main_icon.png")))));
   }
 }
+
+/*Container(child: ConstrainedBox(
+constraints: BoxConstraints.expand(),
+child: FlatButton(onPressed: null,
+child: Image.asset('path/the_image.png'))))*/
