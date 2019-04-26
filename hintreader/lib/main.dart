@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: BookshelView("My bookshel"),
+      home: BookshelfView("My bookshelf"),
     );
   }
 }

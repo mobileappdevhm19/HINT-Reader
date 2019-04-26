@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:hintreader/views/BookView.dart';
 
-class BookshelView extends StatefulWidget {
-  BookshelView(this.title);
+class BookshelfView extends StatefulWidget {
+  BookshelfView(this.title);
 
   final String title;
 
   @override
-  _BookshelViewState createState() => _BookshelViewState();
+  _BookshelfViewState createState() => _BookshelfViewState();
 }
 
-class _BookshelViewState extends State<BookshelView> {
+class _BookshelfViewState extends State<BookshelfView> {
+
+  Size box = Size(200,200);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,15 +22,19 @@ class _BookshelViewState extends State<BookshelView> {
         ),
         body: Container(
             child: ConstrainedBox(
-                constraints: BoxConstraints.expand(),
+                constraints: BoxConstraints.loose(box),
                 child: FlatButton(
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (BuildContext context) =>
-                              BookView("My Book")));
+                              BookView("My Book", false)));
 
                     },
-                    child: Image.asset("assets/main_icon.png")))));
+                    child: Image.asset("assets/main_icon.png")
+                )
+            )
+        )
+    );
   }
 }
 
