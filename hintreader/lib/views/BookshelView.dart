@@ -27,7 +27,7 @@ class _BookshelfViewState extends State<BookshelfView> {
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (BuildContext context) =>
-                              BookView("My Book", false)));
+                              BookView("My Book", false, 0)));
 
                     },
                     child: Image.asset("assets/main_icon.png")
