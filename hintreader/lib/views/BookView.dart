@@ -39,7 +39,7 @@ class _BookViewState extends State<BookView> {
               },
             ),
             RaisedButton(
-              child: const Text("A"),
+              child: Text("A", style: TextStyle(color: widget.size == -1 ? Colors.white : Colors.black,)),
               color: Colors.blue,
               onPressed: () {
                 if(widget.size == 0 || widget.size == 1) {
@@ -54,7 +54,7 @@ class _BookViewState extends State<BookView> {
               },
             ),
             RaisedButton(
-              child: const Text("a"),
+              child: Text("a", style: TextStyle(color: widget.size == 1 ? Colors.white : Colors.black,)),
               color: Colors.blue,
               onPressed: () {
                 if(widget.size == 0 || widget.size == -1) {
