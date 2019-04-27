@@ -4,7 +4,7 @@ class BookView extends StatefulWidget {
   BookView(this.title, this.darkmode, this.size);
 
   final String title;
-  final bool darkmode;
+  bool darkmode;
   int size; //-1 = zoomed in; 0 = normal; 1 = zoomed out
 
   @override
@@ -27,17 +27,15 @@ class _BookViewState extends State<BookView> {
               icon: Icon(Icons.wb_sunny),
               color: widget.darkmode == false ? Colors.black : Colors.white,
               onPressed: () {
-                widget.darkmode == false
-                    ? Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                BookView("My Book", true, widget.size)))
-                    : Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                BookView("My Book", false, widget.size)));
+                if (widget.darkmode == false) {
+                  setState(() {
+                    widget.darkmode = true;
+                  });
+                } else {
+                  setState(() {
+                    widget.darkmode = false;
+                  });
+                }
               },
             ),
             RaisedButton(
