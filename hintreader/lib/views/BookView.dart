@@ -83,23 +83,23 @@ class _BookViewState extends State<BookView> {
     String pic;
     if (widget.darkmode) {
       if (widget.size == 0) {
-        pic = "assets/main_icon.png";
+        pic = "assets/verticalNormalDarkmode.PNG";
       }
       else if (widget.size == -1) {
-        pic = "assets/landscape_zoomin.jpg";
+        pic = "assets/verticalLargeDarkmode.PNG";
       }
       else { //widget.size == 1
-        pic = "assets/landscape_zoomout.JPG";
+        pic = "assets/verticalSmallDarkmode.PNG";
       }
     } else { // no dark mode
       if (widget.size == 0) {
-        pic = "assets/portrait2.jpg";
+        pic = "assets/verticalNormalNoDarkmode.PNG";
       }
       else if (widget.size == -1) {
-        pic = "assets/landscape_zoomin.jpg";
+        pic = "assets/verticalLargeNoDarkmode.PNG";
       }
       else { //widget.size == 1
-        pic = "assets/landscape_zoomout.JPG";
+        pic = "assets/verticalSmallNoDarkmode.PNG";
       }
     }
 
@@ -117,23 +117,23 @@ class _BookViewState extends State<BookView> {
     String pic;
     if (widget.darkmode) {
       if (widget.size == 0) {
-        pic = "assets/main_icon.png";
+        pic = "assets/horizontalNormalDarkmode.PNG";
       }
       else if (widget.size == -1) {
-        pic = "assets/landscape_zoomin.jpg";
+        pic = "assets/horizontalLargeDarkmode.PNG";
       }
       else { //widget.size == 1
-        pic = "assets/landscape_zoomout.JPG";
+        pic = "assets/horizontalSmallDarkmode.PNG";
       }
     } else { // no dark mode
       if (widget.size == 0) {
-        pic = "assets/landscape.jpeg";
+        pic = "assets/horizontalNormalNoDarkmode.PNG";
       }
       else if (widget.size == -1) {
-        pic = "assets/landscape_zoomin.jpg";
+        pic = "assets/horizontalLargeNoDarkmode.PNG";
       }
       else { //widget.size == 1
-        pic = "assets/landscape_zoomout.JPG";
+        pic = "assets/horizontalSmallNoDarkmode.PNG";
       }
     }
 
