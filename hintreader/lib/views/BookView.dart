@@ -8,11 +8,14 @@ class BookView extends StatefulWidget {
   int size; //-1 = zoomed in; 0 = normal; 1 = zoomed out
 
   @override
-  State<StatefulWidget> createState() => _BookViewState();
+  State<StatefulWidget> createState() => _BookViewState(darkmode, size);
 }
 
 class _BookViewState extends State<BookView> {
-  _BookViewState();
+  _BookViewState(this.darkmode, this.size);
+
+  bool darkmode;
+  int size;
 
   @override
   Widget build(BuildContext context) {
@@ -25,45 +28,45 @@ class _BookViewState extends State<BookView> {
             // action button
             IconButton(
               icon: Icon(Icons.wb_sunny),
-              color: widget.darkmode == false ? Colors.black : Colors.white,
+              color: darkmode == false ? Colors.black : Colors.white,
               onPressed: () {
-                if (widget.darkmode == false) {
+                if (darkmode == false) {
                   setState(() {
-                    widget.darkmode = true;
+                    darkmode = true;
                   });
                 } else {
                   setState(() {
-                    widget.darkmode = false;
+                    darkmode = false;
                   });
                 }
               },
             ),
             RaisedButton(
-              child: Text("A", style: TextStyle(color: widget.size == -1 ? Colors.white : Colors.black,)),
+              child: Text("A", style: TextStyle(color: size == -1 ? Colors.white : Colors.black,)),
               color: Colors.blue,
               onPressed: () {
-                if(widget.size == 0 || widget.size == 1) {
+                if(size == 0 || size == 1) {
                   setState(() {
-                    widget.size = -1;
+                    size = -1;
                   });
                 } else {
                   setState(() {
-                    widget.size = 0;
+                    size = 0;
                   });
                 }
               },
             ),
             RaisedButton(
-              child: Text("a", style: TextStyle(color: widget.size == 1 ? Colors.white : Colors.black,)),
+              child: Text("a", style: TextStyle(color: size == 1 ? Colors.white : Colors.black,)),
               color: Colors.blue,
               onPressed: () {
-                if(widget.size == 0 || widget.size == -1) {
+                if(size == 0 || size == -1) {
                   setState(() {
-                    widget.size = 1;
+                    size = 1;
                   });
                 } else {
                   setState(() {
-                    widget.size = 0;
+                    size = 0;
                   });
                 }
               },
@@ -81,24 +84,24 @@ class _BookViewState extends State<BookView> {
 
   portraitOrientation() {
     String pic;
-    if (widget.darkmode) {
-      if (widget.size == 0) {
+    if (darkmode) {
+      if (size == 0) {
         pic = "assets/verticalNormalDarkmode.PNG";
       }
-      else if (widget.size == -1) {
+      else if (size == -1) {
         pic = "assets/verticalLargeDarkmode.PNG";
       }
-      else { //widget.size == 1
+      else { //size == 1
         pic = "assets/verticalSmallDarkmode.PNG";
       }
     } else { // no dark mode
-      if (widget.size == 0) {
+      if (size == 0) {
         pic = "assets/verticalNormalNoDarkmode.PNG";
       }
-      else if (widget.size == -1) {
+      else if (size == -1) {
         pic = "assets/verticalLargeNoDarkmode.PNG";
       }
-      else { //widget.size == 1
+      else { //size == 1
         pic = "assets/verticalSmallNoDarkmode.PNG";
       }
     }
@@ -115,24 +118,24 @@ class _BookViewState extends State<BookView> {
 
   landscapeOrientation() {
     String pic;
-    if (widget.darkmode) {
-      if (widget.size == 0) {
+    if (darkmode) {
+      if (size == 0) {
         pic = "assets/horizontalNormalDarkmode.PNG";
       }
-      else if (widget.size == -1) {
+      else if (size == -1) {
         pic = "assets/horizontalLargeDarkmode.PNG";
       }
-      else { //widget.size == 1
+      else { //size == 1
         pic = "assets/horizontalSmallDarkmode.PNG";
       }
     } else { // no dark mode
-      if (widget.size == 0) {
+      if (size == 0) {
         pic = "assets/horizontalNormalNoDarkmode.PNG";
       }
-      else if (widget.size == -1) {
+      else if (size == -1) {
         pic = "assets/horizontalLargeNoDarkmode.PNG";
       }
-      else { //widget.size == 1
+      else { //size == 1
         pic = "assets/horizontalSmallNoDarkmode.PNG";
       }
     }
