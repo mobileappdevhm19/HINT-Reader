@@ -1,0 +1,1 @@
+[![Coverage Status](https://coveralls.io/repos/github/mobileappdevhm19/apps4students-team-3/badge.svg?branch=feature%2Fvertical)](https://coveralls.io/github/mobileappdevhm19/apps4students-team-3?branch=feature%2Fvertical)
