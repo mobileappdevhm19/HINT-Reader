@@ -17,18 +17,33 @@ class _BookViewState extends State<BookView> {
   bool darkmode;
   int size;
 
+  static Map<int, Color> color =
+  {
+    50:Color.fromRGBO(255,156,6, .1),
+    100:Color.fromRGBO(255,156,6, .2),
+    200:Color.fromRGBO(255,156,6, .3),
+    300:Color.fromRGBO(255,156,6, .4),
+    400:Color.fromRGBO(255,156,6, .5),
+    500:Color.fromRGBO(255,156,6, .6),
+    600:Color.fromRGBO(255,156,6, .7),
+    700:Color.fromRGBO(255,156,6, .8),
+    800:Color.fromRGBO(255,156,6, .9),
+    900:Color.fromRGBO(255,156,6, 1),
+  };
+
+  MaterialColor colorCustom = MaterialColor(0xFFFF9C06, color);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
-          title: Text(widget.title),
           actions: <Widget>[
             // action button
             IconButton(
               icon: Icon(Icons.wb_sunny),
-              color: darkmode == false ? Colors.black : Colors.white,
+              color: darkmode == false ? colorCustom : Colors.black,
               onPressed: () {
                 if (darkmode == false) {
                   setState(() {
@@ -42,8 +57,8 @@ class _BookViewState extends State<BookView> {
               },
             ),
             RaisedButton(
-              child: Text("A", style: TextStyle(color: size == -1 ? Colors.white : Colors.black,)),
-              color: Colors.blue,
+              child: Text("A", style: TextStyle(color: size == -1 ? Colors.black : colorCustom, fontSize: 28)),
+              color: Colors.grey[200],
               onPressed: () {
                 if(size == 0 || size == 1) {
                   setState(() {
@@ -57,8 +72,8 @@ class _BookViewState extends State<BookView> {
               },
             ),
             RaisedButton(
-              child: Text("a", style: TextStyle(color: size == 1 ? Colors.white : Colors.black,)),
-              color: Colors.blue,
+              child: Text("a", style: TextStyle(color: size == 1 ? Colors.black : colorCustom, fontSize: 28)),
+              color: Colors.grey[200],
               onPressed: () {
                 if(size == 0 || size == -1) {
                   setState(() {
@@ -83,6 +98,7 @@ class _BookViewState extends State<BookView> {
   }
 
   portraitOrientation() {
+    scaleImageSize();
     String pic;
     if (darkmode) {
       if (size == 0) {
@@ -125,7 +141,16 @@ class _BookViewState extends State<BookView> {
         child: listView);
   }
 
+  scaleImageSize() {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
+    print("width: " + width.toString());
+    print("height: "+ height.toString());
+  }
+
   landscapeOrientation() {
+    scaleImageSize();
     String pic;
     if (darkmode) {
       if (size == 0) {
