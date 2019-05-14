@@ -14,7 +14,8 @@ class _BookshelfState extends State<Bookshelf> {
 
   Size box = Size(200,200);
 
-  var books=["assets/main_icon.png", "assets/main_icon.png", "assets/main_icon.png"];
+  var books=[true, false, false, false, false, false, false, false, false, false];
+  int book = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -22,46 +23,140 @@ class _BookshelfState extends State<Bookshelf> {
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        body: Container(
-          child: Table(
-            border: TableBorder.all(width: 1.0, color: Colors.black),
+        body: Column(
+          children: <Widget>[
+           Table(
+               border: TableBorder.all(width: 0.0, color: Colors.grey),
             children: [
-              TableRow(children: [
-                newTableCell(),
-                newTableCell(),
-                newTableCell(),
-              ])
-
+              newBookRow(false),
+              newInfoRow(false),
+              newBookRow(false),
+              newInfoRow(false),
           ]),
-
-        )
+            Table(
+                border: TableBorder.all(width: 1.0, color: Colors.black),
+                children: [
+              TableRow(
+                  decoration: new BoxDecoration(
+                    color: Colors.grey,
+                  ),
+                  children: [
+                TableCell(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      ConstrainedBox(
+                        constraints: BoxConstraints.loose(box),
+                        child: Text("\nMost Recent\n"),
+                      ),
+                    ],
+                  ),
+                ),
+              ]),
+    ]),
+           Table(
+               border: TableBorder.all(width: 0.0, color: Colors.blueGrey),
+               children: [
+                 newBookRow(true),
+                 newInfoRow(true),
+               ]),
+            ]),
     );
   }
 
-  newTableCell() {
+  newBookCell(int m) {
     return TableCell(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
           ConstrainedBox(
               constraints: BoxConstraints.loose(box),
-              child: FlatButton(
+              child: books[m%(books.length-1)] == true
+                  ? FlatButton(
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (BuildContext context) =>
                             BookView("My Book", false, 0)));
-
                   },
-                  child: Image.asset("assets/main_icon.png")
+                  child:
+                   Image.asset("assets/book-stack.png",
+                    height: 150,
+                    width: 100,
+                  )
               )
+                  : Image.asset("",
+                height: 150,
+                width: 100,)
           )
         ],
       ),
     );
   }
-}
 
-/*Container(child: ConstrainedBox(
-constraints: BoxConstraints.expand(),
-child: FlatButton(onPressed: null,
-child: Image.asset('path/the_image.png'))))*/
+  newDescriptionCell() {
+    return TableCell(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          ConstrainedBox(
+              constraints: BoxConstraints.loose(box),
+              child: Text("\nTitle\nAuthor\n"),
+          )
+        ],
+      ),
+    );
+  }
+
+  newBookRow(bool m) {
+
+    if (m) {
+      return TableRow(
+          decoration: new BoxDecoration(
+            color: Colors.grey,
+          ),
+          children: [
+            newBookCell(book++),
+            newBookCell(book++),
+            newBookCell(book++),
+
+
+          ]
+      );
+    }
+    else {
+      return TableRow(
+          children: [
+            newBookCell(book++),
+            newBookCell(book++),
+            newBookCell(book++),
+          ]);
+    }
+  }
+
+  newInfoRow(bool m) {
+
+    if (m) {
+      return TableRow(
+          decoration: new BoxDecoration(
+            color: Colors.grey,
+          ),
+          children: [
+            newDescriptionCell(),
+            newDescriptionCell(),
+            newDescriptionCell(),
+          ]);
+    }
+    else {
+      return TableRow(
+
+          children: [
+            newDescriptionCell(),
+            newDescriptionCell(),
+            newDescriptionCell(),
+          ]);
+    }
+    }
+
+  }
+
+
