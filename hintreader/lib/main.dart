@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primaryColor: Colors.grey[200],
       ),
-      home: BookshelfView("My bookshelf"),
+      home: Bookshelf("My bookshelf"),
     );
   }
 }
