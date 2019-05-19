@@ -6,21 +6,45 @@ class GestureWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // scale 1.0 && rotation 0.0 -> swipe
     return new GestureDetector(
       child: _widget,
-        onScaleStart: (e) => {
-          print("Start"),
-          print(e)
+        // Scale
+        onScaleStart: (details) {
+          Offset offset = details.focalPoint;
+          double direction = offset.direction;
+          double distance = offset.distance;
+          double dx = offset.dx;
+          double dy = offset.dy;
+
+          print("Scale Start");
+          print("Dir: $direction, Dis: $distance, Dx: $dx, Dy: $dy");
+          print(details);
         },
-        onScaleUpdate: (e) => {
-          print("Update"),
-          print(e)
+        onScaleUpdate: (details) {
+          print("Scale Update");
+          //print(details);
         },
-        onScaleEnd: (e) => {
-          print("End"),
-          print(e)
+        onScaleEnd: (details) {
+          print("Scale End");
+          print(details);
+          print("");
+        },
+
+        // Swipe
+        onHorizontalDragStart: (details)  {
+          print("Swipe Start");
+          print(details);
+        },
+        onHorizontalDragUpdate: (details) {
+          print("Swipe Update");
+          //print(e);
+        },
+        onHorizontalDragEnd: (details)  {
+          print("Swipe End");
+          print(details);
+          print("");
         },
     );
   }
-
 }
