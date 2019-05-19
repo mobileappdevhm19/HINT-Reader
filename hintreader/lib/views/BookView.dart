@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hintreader/views/GestureWidget.dart';
 
 class BookView extends StatefulWidget {
   BookView(this.title, this.darkmode, this.size);
@@ -19,6 +20,15 @@ class _BookViewState extends State<BookView> {
 
   @override
   Widget build(BuildContext context) {
+
+    var orientationBuilder = OrientationBuilder(
+      builder: (context, orientation) {
+        return orientation == Orientation.portrait
+            ? portraitOrientation()
+            : landscapeOrientation();
+      },
+    );
+
     return Scaffold(
       appBar: AppBar(
           // Here we take the value from the MyHomePage object that was created by
@@ -72,13 +82,7 @@ class _BookViewState extends State<BookView> {
               },
             )
           ]),
-      body: OrientationBuilder(
-        builder: (context, orientation) {
-          return orientation == Orientation.portrait
-              ? portraitOrientation()
-              : landscapeOrientation();
-        },
-      ),
+      body: new GestureWidget(orientationBuilder),
     );
   }
 
@@ -113,11 +117,11 @@ class _BookViewState extends State<BookView> {
         Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
         Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
         Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
+        //Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
+        //Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
+        //Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
+        //Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
+        //Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
       ],
     );
 
