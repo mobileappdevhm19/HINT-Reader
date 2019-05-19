@@ -58,7 +58,7 @@ class _BookshelfState extends State<Bookshelf> {
                     width: (width / 7),
                   )
               )
-                  : Image.asset("",
+                  : Image.asset("assets/main_icon.png",
                 height: (height / 7),
                 width: (width / 7),
               )
