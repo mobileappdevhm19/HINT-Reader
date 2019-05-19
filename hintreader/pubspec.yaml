@@ -73,7 +73,23 @@ flutter:
   # see https://flutter.io/custom-fonts/#from-packages
 
   assets:
-  - assets/
+    - assets/book-stack.png
+    - assets/horizontalLargeDarkmode.PNG
+    - assets/horizontalLargeNoDarkmode.PNG
+    - assets/horizontalNormalDarkmode.PNG
+    - assets/horizontalNormalNoDarkmode.PNG
+    - assets/horizontalSmallDarkmode.PNG
+    - assets/horizontalSmallNoDarkmode.PNG
+    - assets/icon_hintreader.png
+    - assets/icon_hintreader_yellow.png
+    - assets/lightbulb_Hintreader_Appicon.png
+    - assets/main_icon.png
+    - assets/verticalLargeDarkmode.PNG
+    - assets/verticalLargeNoDarkmode.PNG
+    - assets/verticalNormalDarkmode.PNG
+    - assets/verticalNormalNoDarkmode.PNG
+    - assets/verticalSmallDarkmode.PNG
+    - assets/verticalSmallNoDarkmode.PNG
 
 
 flutter_icons:
