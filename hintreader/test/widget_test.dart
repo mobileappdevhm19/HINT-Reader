@@ -34,10 +34,27 @@ void main() {
     expect(find.text("a"), findsOneWidget);
   });
 
-  testWidgets('Test orientation', (WidgetTester tester) async {
-    final TestWidgetsFlutterBinding binding = TestWidgetsFlutterBinding.ensureInitialized();
-    await binding.setSurfaceSize(Size(800.0, 400.0));
+  testWidgets('Test orientation landscape', (WidgetTester tester) async {
     await tester.pumpWidget(MyApp());
+    final TestWidgetsFlutterBinding binding = TestWidgetsFlutterBinding.ensureInitialized();
+    await binding.setSurfaceSize(Size(800.0, 600.0));
+    await tester.pumpAndSettle();
+    expect(find.text("My bookshelf"), findsOneWidget);
+    await tester.pumpAndSettle();
+    expect(find.byType(FlatButton), findsWidgets);
+    await tester.tap(find.byType(FlatButton));
+    await tester.pumpAndSettle();
+    expect(find.byType(ListView), findsOneWidget);
+    expect(find.byIcon(Icons.wb_sunny), findsOneWidget);
+    expect(find.text("A"), findsOneWidget);
+    expect(find.text("a"), findsOneWidget);
+  });
+
+  testWidgets('Test orientation portrait', (WidgetTester tester) async {
+    await tester.pumpWidget(MyApp());
+    final TestWidgetsFlutterBinding binding = TestWidgetsFlutterBinding.ensureInitialized();
+    await binding.setSurfaceSize(Size(600.0, 800.0));
+    await tester.pumpAndSettle();
     expect(find.text("My bookshelf"), findsOneWidget);
     await tester.pumpAndSettle();
     expect(find.byType(FlatButton), findsWidgets);
