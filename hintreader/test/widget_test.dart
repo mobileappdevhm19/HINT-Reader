@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:hintreader/main.dart';
-import 'package:hintreader/views/BookView.dart';
 
 void main() {
   testWidgets('Bookshelf display test', (WidgetTester tester) async {
@@ -44,6 +43,8 @@ void main() {
     expect(find.byType(FlatButton), findsWidgets);
     await tester.tap(find.byType(FlatButton));
     await tester.pumpAndSettle();
+    await binding.setSurfaceSize(Size(800.0, 600.0));
+    await tester.pumpAndSettle();
     expect(find.byType(ListView), findsOneWidget);
     expect(find.byIcon(Icons.wb_sunny), findsOneWidget);
     expect(find.text("A"), findsOneWidget);
@@ -59,6 +60,8 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.byType(FlatButton), findsWidgets);
     await tester.tap(find.byType(FlatButton));
+    await tester.pumpAndSettle();
+    await binding.setSurfaceSize(Size(600.0, 800.0));
     await tester.pumpAndSettle();
     expect(find.byType(ListView), findsOneWidget);
     expect(find.byIcon(Icons.wb_sunny), findsOneWidget);
