@@ -17,10 +17,7 @@ void main() {
     expect(find.byType(FlatButton), findsOneWidget);
   });
 
-
   testWidgets('Change to BookvIew test', (WidgetTester tester) async {
-
-
     await tester.pumpWidget(MyApp());
     expect(find.text("My bookshelf"), findsOneWidget);
     await tester.pumpAndSettle();
@@ -35,7 +32,8 @@ void main() {
 
   testWidgets('Test orientation landscape', (WidgetTester tester) async {
     await tester.pumpWidget(MyApp());
-    final TestWidgetsFlutterBinding binding = TestWidgetsFlutterBinding.ensureInitialized();
+    final TestWidgetsFlutterBinding binding =
+        TestWidgetsFlutterBinding.ensureInitialized();
     await binding.setSurfaceSize(Size(800.0, 600.0));
     await tester.pumpAndSettle();
     expect(find.text("My bookshelf"), findsOneWidget);
@@ -53,7 +51,8 @@ void main() {
 
   testWidgets('Test orientation portrait', (WidgetTester tester) async {
     await tester.pumpWidget(MyApp());
-    final TestWidgetsFlutterBinding binding = TestWidgetsFlutterBinding.ensureInitialized();
+    final TestWidgetsFlutterBinding binding =
+        TestWidgetsFlutterBinding.ensureInitialized();
     await binding.setSurfaceSize(Size(600.0, 800.0));
     await tester.pumpAndSettle();
     expect(find.text("My bookshelf"), findsOneWidget);
@@ -67,8 +66,27 @@ void main() {
     expect(find.byIcon(Icons.wb_sunny), findsOneWidget);
     expect(find.text("A"), findsOneWidget);
     expect(find.text("a"), findsOneWidget);
-    expect(find.byType(Image), findsWidgets);
+    expect(find.byType(Image), findsNWidgets(8));
   });
-  
-  
+
+  testWidgets('Test orientation landscape', (WidgetTester tester) async {
+    await tester.pumpWidget(MyApp());
+    final TestWidgetsFlutterBinding binding =
+    TestWidgetsFlutterBinding.ensureInitialized();
+    await binding.setSurfaceSize(Size(600.0, 800.0));
+    await tester.pumpAndSettle();
+    expect(find.text("My bookshelf"), findsOneWidget);
+    await tester.pumpAndSettle();
+    expect(find.byType(FlatButton), findsWidgets);
+    await tester.tap(find.byType(FlatButton));
+    await tester.pumpAndSettle();
+    await binding.setSurfaceSize(Size(800.0, 600.0));
+    await tester.pumpAndSettle();
+    expect(find.byType(ListView), findsOneWidget);
+    expect(find.byIcon(Icons.wb_sunny), findsOneWidget);
+    expect(find.text("A"), findsOneWidget);
+    expect(find.text("a"), findsOneWidget);
+    expect(find.byType(Image), findsNWidgets(9));
+  });
+
 }

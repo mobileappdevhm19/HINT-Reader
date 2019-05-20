@@ -178,7 +178,8 @@ class _BookViewState extends State<BookView> {
       scrollDirection: Axis.vertical,
       //padding: EdgeInsets.all(8.0),
       children: <Widget>[
-        Image.asset(pic, fit: BoxFit.cover, height: 650, alignment: Alignment.center,),
+        Image.asset(pic, fit: BoxFit.cover, height: 350, alignment: Alignment.center,),
+        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
         Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
         Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
         Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
