@@ -67,6 +67,7 @@ void main() {
     expect(find.byIcon(Icons.wb_sunny), findsOneWidget);
     expect(find.text("A"), findsOneWidget);
     expect(find.text("a"), findsOneWidget);
+    expect(find.byType(Image), findsWidgets);
   });
   
   
