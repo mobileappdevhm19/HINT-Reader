@@ -25,18 +25,18 @@ addons:
       - libstdc++6
       - fonts-droid
 before_script:
-    - cd hintreader
+  - cd hintreader
   - wget http://services.gradle.org/distributions/gradle-3.5-bin.zip
   - unzip -qq gradle-3.5-bin.zip
   - export GRADLE_HOME=$PWD/gradle-3.5
   - export PATH=$GRADLE_HOME/bin:$PATH
   - git clone https://github.com/flutter/flutter.git -b beta
 script:
-- ./flutter/bin/flutter test --coverage
+  - ./flutter/bin/flutter test --coverage
 after_success:
   - ./flutter/bin/flutter -v build apk
   - coveralls-lcov coverage/lcov.info
-
+  
 cache:
   directories:
     - $HOME/.pub-cache
