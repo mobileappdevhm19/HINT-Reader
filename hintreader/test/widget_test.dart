@@ -17,6 +17,7 @@ void main() {
     expect(find.byType(FlatButton), findsOneWidget);
   });
 
+
   testWidgets('Change to BookvIew test', (WidgetTester tester) async {
     await tester.pumpWidget(MyApp());
     expect(find.text("My bookshelf"), findsOneWidget);
@@ -30,7 +31,8 @@ void main() {
     expect(find.text("a"), findsOneWidget);
   });
 
-  testWidgets('Test orientation landscape', (WidgetTester tester) async {
+
+  testWidgets('Test orientation of BookView landscape', (WidgetTester tester) async {
     await tester.pumpWidget(MyApp());
     final TestWidgetsFlutterBinding binding =
         TestWidgetsFlutterBinding.ensureInitialized();
@@ -49,7 +51,7 @@ void main() {
     expect(find.text("a"), findsOneWidget);
   });
 
-  testWidgets('Test orientation portrait', (WidgetTester tester) async {
+  testWidgets('Test orientation of BookView portrait', (WidgetTester tester) async {
     await tester.pumpWidget(MyApp());
     final TestWidgetsFlutterBinding binding =
         TestWidgetsFlutterBinding.ensureInitialized();
@@ -66,10 +68,10 @@ void main() {
     expect(find.byIcon(Icons.wb_sunny), findsOneWidget);
     expect(find.text("A"), findsOneWidget);
     expect(find.text("a"), findsOneWidget);
-    expect(find.byType(Image), findsNWidgets(8));
   });
 
-  //test for landscape mode
+
+
   testWidgets('Test orientation landscape with no darkomode and normalsize', (WidgetTester tester) async {
 
     String expectImage = "Image(image: AssetImage(bundle: null, name: \"assets/horizontalNormalNoDarkmode.PNG\")";
@@ -77,7 +79,7 @@ void main() {
     await tester.pumpWidget(MyApp());
     final TestWidgetsFlutterBinding binding =
     TestWidgetsFlutterBinding.ensureInitialized();
-    await binding.setSurfaceSize(Size(600.0, 800.0));
+    await binding.setSurfaceSize(Size(800.0, 600.0));
     await tester.pumpAndSettle();
     expect(find.text("My bookshelf"), findsOneWidget);
     await tester.pumpAndSettle();
@@ -86,10 +88,6 @@ void main() {
     await tester.pumpAndSettle();
     await binding.setSurfaceSize(Size(800.0, 600.0));
     await tester.pumpAndSettle();
-    expect(find.byType(ListView), findsOneWidget);
-    expect(find.byIcon(Icons.wb_sunny), findsOneWidget);
-    expect(find.text("A"), findsOneWidget);
-    expect(find.text("a"), findsOneWidget);
     expect(tester.firstElement(find.byType(Image)).toString().substring(0, 84), expectImage);
   });
 
@@ -100,7 +98,7 @@ void main() {
     await tester.pumpWidget(MyApp());
     final TestWidgetsFlutterBinding binding =
     TestWidgetsFlutterBinding.ensureInitialized();
-    await binding.setSurfaceSize(Size(600.0, 800.0));
+    await binding.setSurfaceSize(Size(800.0, 600.0));
     await tester.pumpAndSettle();
     expect(find.text("My bookshelf"), findsOneWidget);
     await tester.pumpAndSettle();
@@ -121,7 +119,7 @@ void main() {
     await tester.pumpWidget(MyApp());
     final TestWidgetsFlutterBinding binding =
     TestWidgetsFlutterBinding.ensureInitialized();
-    await binding.setSurfaceSize(Size(600.0, 800.0));
+    await binding.setSurfaceSize(Size(800.0, 600.0));
     await tester.pumpAndSettle();
     expect(find.text("My bookshelf"), findsOneWidget);
     await tester.pumpAndSettle();
@@ -135,6 +133,27 @@ void main() {
     expect(tester.firstElement(find.byType(Image)).toString().substring(0, 83), expectImage);
   });
 
+  testWidgets('Test orientation landscape with darkomode and normal size', (WidgetTester tester) async {
+
+    String expectImage = "Image(image: AssetImage(bundle: null, name: \"assets/horizontalNormalDarkmode.PNG\")";
+
+    await tester.pumpWidget(MyApp());
+    final TestWidgetsFlutterBinding binding =
+    TestWidgetsFlutterBinding.ensureInitialized();
+    await binding.setSurfaceSize(Size(800.0, 600.0));
+    await tester.pumpAndSettle();
+    expect(find.text("My bookshelf"), findsOneWidget);
+    await tester.pumpAndSettle();
+    expect(find.byType(FlatButton), findsWidgets);
+    await tester.tap(find.byType(FlatButton));
+    await tester.pumpAndSettle();
+    await binding.setSurfaceSize(Size(800.0, 600.0));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byIcon(Icons.wb_sunny));
+    await tester.pumpAndSettle();
+    expect(tester.firstElement(find.byType(Image)).toString().substring(0, 82), expectImage);
+  });
+
   testWidgets('Test orientation landscape with darkomode and Large size', (WidgetTester tester) async {
 
     String expectImage = "Image(image: AssetImage(bundle: null, name: \"assets/horizontalLargeDarkmode.PNG\")";
@@ -142,7 +161,7 @@ void main() {
     await tester.pumpWidget(MyApp());
     final TestWidgetsFlutterBinding binding =
     TestWidgetsFlutterBinding.ensureInitialized();
-    await binding.setSurfaceSize(Size(600.0, 800.0));
+    await binding.setSurfaceSize(Size(800.0, 600.0));
     await tester.pumpAndSettle();
     expect(find.text("My bookshelf"), findsOneWidget);
     await tester.pumpAndSettle();
@@ -165,7 +184,7 @@ void main() {
     await tester.pumpWidget(MyApp());
     final TestWidgetsFlutterBinding binding =
     TestWidgetsFlutterBinding.ensureInitialized();
-    await binding.setSurfaceSize(Size(600.0, 800.0));
+    await binding.setSurfaceSize(Size(800.0, 600.0));
     await tester.pumpAndSettle();
     expect(find.text("My bookshelf"), findsOneWidget);
     await tester.pumpAndSettle();
@@ -181,6 +200,137 @@ void main() {
     expect(tester.firstElement(find.byType(Image)).toString().substring(0, 81), expectImage);
   });
 
+
+
+
+
+  testWidgets('Test orientation portrait with no darkomode and normalsize', (WidgetTester tester) async {
+
+    String expectImage = "Image(image: AssetImage(bundle: null, name: \"assets/verticalNormalNoDarkmode.PNG\")";
+
+    await tester.pumpWidget(MyApp());
+    final TestWidgetsFlutterBinding binding =
+    TestWidgetsFlutterBinding.ensureInitialized();
+    await binding.setSurfaceSize(Size(600.0, 800.0));
+    await tester.pumpAndSettle();
+    expect(find.text("My bookshelf"), findsOneWidget);
+    await tester.pumpAndSettle();
+    expect(find.byType(FlatButton), findsWidgets);
+    await tester.tap(find.byType(FlatButton));
+    await tester.pumpAndSettle();
+    await binding.setSurfaceSize(Size(600.0, 800.0));
+    await tester.pumpAndSettle();
+    expect(tester.firstElement(find.byType(Image)).toString().substring(0, 82), expectImage);
+  });
+
+  testWidgets('Test orientation portrait with no darkomode and small size', (WidgetTester tester) async {
+
+    String expectImage = "Image(image: AssetImage(bundle: null, name: \"assets/verticalSmallNoDarkmode.PNG\")";
+
+    await tester.pumpWidget(MyApp());
+    final TestWidgetsFlutterBinding binding =
+    TestWidgetsFlutterBinding.ensureInitialized();
+    await binding.setSurfaceSize(Size(600.0, 800.0));
+    await tester.pumpAndSettle();
+    expect(find.text("My bookshelf"), findsOneWidget);
+    await tester.pumpAndSettle();
+    expect(find.byType(FlatButton), findsWidgets);
+    await tester.tap(find.byType(FlatButton));
+    await tester.pumpAndSettle();
+    await binding.setSurfaceSize(Size(600.0, 800.0));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text("a"));
+    await tester.pumpAndSettle();
+    expect(tester.firstElement(find.byType(Image)).toString().substring(0, 81), expectImage);
+  });
+
+  testWidgets('Test orientation portrait with no darkomode and Large size', (WidgetTester tester) async {
+
+    String expectImage = "Image(image: AssetImage(bundle: null, name: \"assets/verticalLargeNoDarkmode.PNG\")";
+
+    await tester.pumpWidget(MyApp());
+    final TestWidgetsFlutterBinding binding =
+    TestWidgetsFlutterBinding.ensureInitialized();
+    await binding.setSurfaceSize(Size(600.0, 800.0));
+    await tester.pumpAndSettle();
+    expect(find.text("My bookshelf"), findsOneWidget);
+    await tester.pumpAndSettle();
+    expect(find.byType(FlatButton), findsWidgets);
+    await tester.tap(find.byType(FlatButton));
+    await tester.pumpAndSettle();
+    await binding.setSurfaceSize(Size(600.0, 800.0));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text("A"));
+    await tester.pumpAndSettle();
+    expect(tester.firstElement(find.byType(Image)).toString().substring(0, 81), expectImage);
+  });
+
+  testWidgets('Test orientation portrait with darkomode and normal size', (WidgetTester tester) async {
+
+    String expectImage = "Image(image: AssetImage(bundle: null, name: \"assets/verticalNormalDarkmode.PNG\")";
+
+    await tester.pumpWidget(MyApp());
+    final TestWidgetsFlutterBinding binding =
+    TestWidgetsFlutterBinding.ensureInitialized();
+    await binding.setSurfaceSize(Size(600.0, 800.0));
+    await tester.pumpAndSettle();
+    expect(find.text("My bookshelf"), findsOneWidget);
+    await tester.pumpAndSettle();
+    expect(find.byType(FlatButton), findsWidgets);
+    await tester.tap(find.byType(FlatButton));
+    await tester.pumpAndSettle();
+    await binding.setSurfaceSize(Size(600.0, 800.0));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byIcon(Icons.wb_sunny));
+    await tester.pumpAndSettle();
+    expect(tester.firstElement(find.byType(Image)).toString().substring(0, 80), expectImage);
+  });
+
+  testWidgets('Test orientation portrait with darkomode and Large size', (WidgetTester tester) async {
+
+    String expectImage = "Image(image: AssetImage(bundle: null, name: \"assets/verticalLargeDarkmode.PNG\")";
+
+    await tester.pumpWidget(MyApp());
+    final TestWidgetsFlutterBinding binding =
+    TestWidgetsFlutterBinding.ensureInitialized();
+    await binding.setSurfaceSize(Size(600.0, 800.0));
+    await tester.pumpAndSettle();
+    expect(find.text("My bookshelf"), findsOneWidget);
+    await tester.pumpAndSettle();
+    expect(find.byType(FlatButton), findsWidgets);
+    await tester.tap(find.byType(FlatButton));
+    await tester.pumpAndSettle();
+    await binding.setSurfaceSize(Size(600.0, 800.0));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byIcon(Icons.wb_sunny));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text("A"));
+    await tester.pumpAndSettle();
+    expect(tester.firstElement(find.byType(Image)).toString().substring(0, 79), expectImage);
+  });
+
+  testWidgets('Test orientation portrait with darkomode and small size', (WidgetTester tester) async {
+
+    String expectImage = "Image(image: AssetImage(bundle: null, name: \"assets/verticalSmallDarkmode.PNG\")";
+
+    await tester.pumpWidget(MyApp());
+    final TestWidgetsFlutterBinding binding =
+    TestWidgetsFlutterBinding.ensureInitialized();
+    await binding.setSurfaceSize(Size(600.0, 800.0));
+    await tester.pumpAndSettle();
+    expect(find.text("My bookshelf"), findsOneWidget);
+    await tester.pumpAndSettle();
+    expect(find.byType(FlatButton), findsWidgets);
+    await tester.tap(find.byType(FlatButton));
+    await tester.pumpAndSettle();
+    await binding.setSurfaceSize(Size(600.0, 800.0));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byIcon(Icons.wb_sunny));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text("a"));
+    await tester.pumpAndSettle();
+    expect(tester.firstElement(find.byType(Image)).toString().substring(0, 79), expectImage);
+  });
 
 
 }
