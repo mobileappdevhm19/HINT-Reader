@@ -48,7 +48,10 @@ script:
 - flutter test --coverage
 
 after_success:
+- coveralls-lcov coverage/lcov.info
 - "echo Build time: $BUILD_TIME"
 - "echo Apk name: $APK_PATH"
 - flutter build apk
 - mv build/app/outputs/apk/release/app-release.apk $APK_PATH
+
+
