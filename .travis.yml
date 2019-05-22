@@ -1,6 +1,4 @@
-matrix:
-  include:
-    - os: linux
+    os: linux
       language: android
       licenses:
         - 'android-sdk-preview-license-.+'
