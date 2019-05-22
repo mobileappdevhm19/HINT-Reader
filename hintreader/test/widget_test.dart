@@ -69,6 +69,7 @@ void main() {
     expect(find.byType(Image), findsNWidgets(8));
   });
 
+  //test for landscape mode
   testWidgets('Test orientation landscape', (WidgetTester tester) async {
     await tester.pumpWidget(MyApp());
     final TestWidgetsFlutterBinding binding =
