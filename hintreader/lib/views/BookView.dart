@@ -31,26 +31,28 @@ class BookViewState extends State<BookView> {
     }
   }
 
-  void biggerText()  {
-    if(size == 0 || size == 1) {
+  void zoomOut()  {
+    int newSize = size + 1;
+    if (newSize > 1)  {
       setState(() {
-        size = -1;
+        size = 1;
       });
-    } else {
+    }  else  {
       setState(() {
-        size = 0;
+        size = newSize;
       });
     }
   }
 
-  void smallerText() {
-    if(size == 0 || size == -1) {
+  void zoomIn() {
+    int newSize = size - 1;
+    if (newSize < -1)  {
       setState(() {
-        size = 1;
+        size = -1;
       });
-    } else {
+    }  else  {
       setState(() {
-        size = 0;
+        size = newSize;
       });
     }
   }
@@ -81,12 +83,12 @@ class BookViewState extends State<BookView> {
             RaisedButton(
               child: Text("A", style: TextStyle(color: size == -1 ? Colors.white : Colors.black,)),
               color: Colors.blue,
-              onPressed: biggerText,
+              onPressed: zoomIn,
             ),
             RaisedButton(
               child: Text("a", style: TextStyle(color: size == 1 ? Colors.white : Colors.black,)),
               color: Colors.blue,
-              onPressed: smallerText,
+              onPressed: zoomOut,
             )
           ]),
       body: new GestureWidget(orientationBuilder, this),

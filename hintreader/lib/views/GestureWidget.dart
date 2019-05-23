@@ -33,11 +33,11 @@ class _GestureWidgetState extends State<GestureWidget> {
       },
       onScaleEnd: (details) {
         if (scaleRate > 1)  {
-          //print("Zoom out");
-          _view.biggerText();
-        }  else  {
           //print("Zoom in");
-          _view.smallerText();
+          _view.zoomIn();
+        }  else  {
+          //print("Zoom out");
+          _view.zoomOut();
         }
       },
 
