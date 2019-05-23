@@ -1,2 +1,6 @@
 .idea
 .DS_Store
+<<<<<<< HEAD
+=======
+hintreader/ios/Runner.xcworkspace/xcshareddata/
+>>>>>>> feature/devicesize
