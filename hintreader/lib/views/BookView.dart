@@ -9,14 +9,51 @@ class BookView extends StatefulWidget {
   int size; //-1 = zoomed in; 0 = normal; 1 = zoomed out
 
   @override
-  State<StatefulWidget> createState() => _BookViewState(darkmode, size);
+  State<StatefulWidget> createState() => BookViewState(darkmode, size);
 }
 
-class _BookViewState extends State<BookView> {
-  _BookViewState(this.darkmode, this.size);
+class BookViewState extends State<BookView> {
+  BookViewState(this.darkmode, this.size);
 
   bool darkmode;
   int size;
+
+  // Button Listeners
+  void pressDarkmode()  {
+    if (darkmode == false) {
+      setState(() {
+        darkmode = true;
+      });
+    } else {
+      setState(() {
+        darkmode = false;
+      });
+    }
+  }
+
+  void biggerText()  {
+    if(size == 0 || size == 1) {
+      setState(() {
+        size = -1;
+      });
+    } else {
+      setState(() {
+        size = 0;
+      });
+    }
+  }
+
+  void smallerText() {
+    if(size == 0 || size == -1) {
+      setState(() {
+        size = 1;
+      });
+    } else {
+      setState(() {
+        size = 0;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,50 +76,20 @@ class _BookViewState extends State<BookView> {
             IconButton(
               icon: Icon(Icons.wb_sunny),
               color: darkmode == false ? Colors.black : Colors.white,
-              onPressed: () {
-                if (darkmode == false) {
-                  setState(() {
-                    darkmode = true;
-                  });
-                } else {
-                  setState(() {
-                    darkmode = false;
-                  });
-                }
-              },
+              onPressed: pressDarkmode,
             ),
             RaisedButton(
               child: Text("A", style: TextStyle(color: size == -1 ? Colors.white : Colors.black,)),
               color: Colors.blue,
-              onPressed: () {
-                if(size == 0 || size == 1) {
-                  setState(() {
-                    size = -1;
-                  });
-                } else {
-                  setState(() {
-                    size = 0;
-                  });
-                }
-              },
+              onPressed: biggerText,
             ),
             RaisedButton(
               child: Text("a", style: TextStyle(color: size == 1 ? Colors.white : Colors.black,)),
               color: Colors.blue,
-              onPressed: () {
-                if(size == 0 || size == -1) {
-                  setState(() {
-                    size = 1;
-                  });
-                } else {
-                  setState(() {
-                    size = 0;
-                  });
-                }
-              },
+              onPressed: smallerText,
             )
           ]),
-      body: new GestureWidget(orientationBuilder),
+      body: new GestureWidget(orientationBuilder, this),
     );
   }
 
