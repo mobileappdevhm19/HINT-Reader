@@ -11,32 +11,26 @@ class GestureWidget extends StatefulWidget {
 class _GestureWidgetState extends State<GestureWidget> {
   double startX;
   double endX;
+  double scaleRate;
 
   @override
   Widget build(BuildContext context) {
-    // scale 1.0 && rotation 0.0 -> swipe
     return new GestureDetector(
       child: widget._widget,
         // Scale
         onScaleStart: (details) {
-          Offset offset = details.focalPoint;
-          double direction = offset.direction;
-          double distance = offset.distance;
-          double dx = offset.dx;
-          double dy = offset.dy;
-
-          print("Scale Start");
-          print("Dir: $direction, Dis: $distance, Dx: $dx, Dy: $dy");
-          print(details);
+          scaleRate = 1;
         },
         onScaleUpdate: (details) {
-          print("Scale Update");
-          //print(details);
+          // only this is important - update it
+          scaleRate = details.scale;
         },
         onScaleEnd: (details) {
-          print("Scale End");
-          print(details);
-          print("");
+          if (scaleRate > 1)  {
+            print("Zoom out");
+          }  else  {
+            print("Zoom in");
+          }
         },
 
         // Swipe
