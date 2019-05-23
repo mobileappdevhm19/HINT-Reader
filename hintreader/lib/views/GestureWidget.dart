@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 
-class GestureWidget extends StatelessWidget {
+class GestureWidget extends StatefulWidget {
   final Widget _widget;
   GestureWidget(this._widget);
+
+  @override
+  _GestureWidgetState createState() => _GestureWidgetState();
+}
+
+class _GestureWidgetState extends State<GestureWidget> {
+  double startX;
+  double endX;
 
   @override
   Widget build(BuildContext context) {
     // scale 1.0 && rotation 0.0 -> swipe
     return new GestureDetector(
-      child: _widget,
+      child: widget._widget,
         // Scale
         onScaleStart: (details) {
           Offset offset = details.focalPoint;
@@ -33,18 +41,21 @@ class GestureWidget extends StatelessWidget {
 
         // Swipe
         onHorizontalDragStart: (details)  {
-          print("Swipe Start");
-          print(details);
+          // only this is important
+          startX = details.globalPosition.dx;
         },
         onHorizontalDragUpdate: (details) {
-          print("Swipe Update");
-          //print(e);
+          // only this is important - update it
+          endX = details.globalPosition.dx;
         },
         onHorizontalDragEnd: (details)  {
-          print("Swipe End");
-          print(details);
-          print("");
-        },
+          double result = startX - endX;
+          if (result > 0)  {
+            print("Swipe Left");
+          }  else  {
+            print("Swipe Right");
+          }
+        }
     );
   }
 }
