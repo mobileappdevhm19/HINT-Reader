@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hintreader/views/BookView.dart';
+import 'package:hintreader/BookCard.dart';
 
 class Bookshelf extends StatefulWidget {
   Bookshelf(this.title);
@@ -11,14 +11,23 @@ class Bookshelf extends StatefulWidget {
 }
 
 class _BookshelfState extends State<Bookshelf> {
-
   Size box = Size(200, 200);
   double width = 0;
-  double height= 0;
+  double height = 0;
   bool vertical = true;
 
   var books = [
-    true, false, false, false, false, false, false, false, false, false];
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ];
   int book = 0;
 
   @override
@@ -27,8 +36,7 @@ class _BookshelfState extends State<Bookshelf> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body:
-      OrientationBuilder(
+      body: OrientationBuilder(
         builder: (context, orientation) {
           return orientation == Orientation.portrait
               ? verticalTable()
@@ -46,18 +54,7 @@ class _BookshelfState extends State<Bookshelf> {
           Container(
               constraints: BoxConstraints.loose(box),
               child: books[m % (books.length - 1)] == true
-                  ? FlatButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (BuildContext context) =>
-                            BookView("My Book", false, 0)));
-                  },
-                  child:
-                  Image.asset("assets/book-stack.png",
-                    height: (height / 7),
-                    width: (width / 7),
-                  )
-              )
+                  ? BookCard("verticalLargeNoDarkmode.PNG", "Logik", "Immanuel Kant")
                   : Image.asset("assets/main_icon.png",
                 height: (height / 7),
                 width: (width / 7),
@@ -83,9 +80,7 @@ class _BookshelfState extends State<Bookshelf> {
   }
 
   newBookRow(bool m) {
-    vertical == false
-    ? book = book % 3
-    : book = book;
+    vertical == false ? book = book % 3 : book = book;
     if (m) {
       return TableRow(
           decoration: new BoxDecoration(
@@ -95,16 +90,13 @@ class _BookshelfState extends State<Bookshelf> {
             newBookCell(book++),
             newBookCell(book++),
             newBookCell(book++),
-          ]
-      );
-    }
-    else {
-      return TableRow(
-          children: [
-            newBookCell(book++),
-            newBookCell(book++),
-            newBookCell(book++),
           ]);
+    } else {
+      return TableRow(children: [
+        newBookCell(book++),
+        newBookCell(book++),
+        newBookCell(book++),
+      ]);
     }
   }
 
@@ -119,14 +111,12 @@ class _BookshelfState extends State<Bookshelf> {
             newDescriptionCell(),
             newDescriptionCell(),
           ]);
-    }
-    else {
-      return TableRow(
-          children: [
-            newDescriptionCell(),
-            newDescriptionCell(),
-            newDescriptionCell(),
-          ]);
+    } else {
+      return TableRow(children: [
+        newDescriptionCell(),
+        newDescriptionCell(),
+        newDescriptionCell(),
+      ]);
     }
   }
 
@@ -135,44 +125,41 @@ class _BookshelfState extends State<Bookshelf> {
     book = 0;
     print("Vertical");
     scaleImageSize();
-    return Column(
-        children: <Widget>[
-          Table(
-              border: TableBorder.all(width: 0.0, color: Colors.grey),
-              children: [
-                newBookRow(false),
-                newInfoRow(false),
-                newBookRow(false),
-                newInfoRow(false),
-              ]),
-          Table(
-              border: TableBorder.all(width: 1.0, color: Colors.black),
-              children: [
-                TableRow(
-                    decoration: new BoxDecoration(
-                      color: Colors.grey,
-                    ),
-                    children: [
-                      TableCell(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            ConstrainedBox(
-                              constraints: BoxConstraints.loose(box),
-                              child: Text("\nMost Recent\n"),
-                            ),
-                          ],
+    return Column(children: <Widget>[
+      Table(border: TableBorder.all(width: 0.0, color: Colors.grey), children: [
+        newBookRow(false),
+        newInfoRow(false),
+        newBookRow(false),
+        newInfoRow(false),
+      ]),
+      Table(
+          border: TableBorder.all(width: 1.0, color: Colors.black),
+          children: [
+            TableRow(
+                decoration: new BoxDecoration(
+                  color: Colors.grey,
+                ),
+                children: [
+                  TableCell(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        ConstrainedBox(
+                          constraints: BoxConstraints.loose(box),
+                          child: Text("\nMost Recent\n"),
                         ),
-                      ),
-                    ]),
-              ]),
-          Table(
-              border: TableBorder.all(width: 0.0, color: Colors.blueGrey),
-              children: [
-                newBookRow(true),
-                newInfoRow(true),
-              ]),
-        ]);
+                      ],
+                    ),
+                  ),
+                ]),
+          ]),
+      Table(
+          border: TableBorder.all(width: 0.0, color: Colors.blueGrey),
+          children: [
+            newBookRow(true),
+            newInfoRow(true),
+          ]),
+    ]);
   }
 
   horizontalTable() {
@@ -218,6 +205,6 @@ class _BookshelfState extends State<Bookshelf> {
     height = MediaQuery.of(context).size.height;
 
     print("width: " + width.toString());
-    print("height: "+ height.toString());
+    print("height: " + height.toString());
   }
 }
