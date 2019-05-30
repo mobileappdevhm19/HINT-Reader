@@ -15,8 +15,23 @@ class BookView extends StatefulWidget {
 class BookViewState extends State<BookView> {
   BookViewState(this.darkmode, this.size);
 
+  final ScrollController _controller = ScrollController();
+  final pageSize = 657.0;  // this should depend on the image size (see below)
   bool darkmode;
   int size;
+
+  // Gestures
+  void scrollUp() {
+    //_controller.jumpTo(_controller.offset - itemSize);  // no animation
+    _controller.animateTo(_controller.offset - pageSize,
+        curve: Curves.linear, duration: Duration(milliseconds: 500));
+  }
+
+  void scrollDown() {
+    //_controller.jumpTo(_controller.offset + itemSize);  // no animation
+    _controller.animateTo(_controller.offset + pageSize,
+        curve: Curves.linear, duration: Duration(milliseconds: 500));
+  }
 
   // Button Listeners
   void pressDarkmode()  {
@@ -59,7 +74,6 @@ class BookViewState extends State<BookView> {
 
   @override
   Widget build(BuildContext context) {
-
     var orientationBuilder = OrientationBuilder(
       builder: (context, orientation) {
         return orientation == Orientation.portrait
@@ -95,89 +109,82 @@ class BookViewState extends State<BookView> {
     );
   }
 
-  portraitOrientation() {
+  String getCorrectPicForOrientation(bool vertical)  {
     String pic;
-    if (darkmode) {
-      if (size == 0) {
-        pic = "assets/verticalNormalDarkmode.PNG";
+    if (vertical) {
+      if (darkmode) {
+        if (size == 0) {
+          pic = "assets/verticalNormalDarkmode.PNG";
+        }
+        else if (size == -1) {
+          pic = "assets/verticalLargeDarkmode.PNG";
+        }
+        else { //size == 1
+          pic = "assets/verticalSmallDarkmode.PNG";
+        }
+      } else { // no dark mode
+        if (size == 0) {
+          pic = "assets/verticalNormalNoDarkmode.PNG";
+        }
+        else if (size == -1) {
+          pic = "assets/verticalLargeNoDarkmode.PNG";
+        }
+        else { //size == 1
+          pic = "assets/verticalSmallNoDarkmode.PNG";
+        }
       }
-      else if (size == -1) {
-        pic = "assets/verticalLargeDarkmode.PNG";
-      }
-      else { //size == 1
-        pic = "assets/verticalSmallDarkmode.PNG";
-      }
-    } else { // no dark mode
-      if (size == 0) {
-        pic = "assets/verticalNormalNoDarkmode.PNG";
-      }
-      else if (size == -1) {
-        pic = "assets/verticalLargeNoDarkmode.PNG";
-      }
-      else { //size == 1
-        pic = "assets/verticalSmallNoDarkmode.PNG";
+    }  else  {
+      if (darkmode) {
+        if (size == 0) {
+          pic = "assets/horizontalNormalDarkmode.PNG";
+        }
+        else if (size == -1) {
+          pic = "assets/horizontalLargeDarkmode.PNG";
+        }
+        else { //size == 1
+          pic = "assets/horizontalSmallDarkmode.PNG";
+        }
+      } else { // no dark mode
+        if (size == 0) {
+          pic = "assets/horizontalNormalNoDarkmode.PNG";
+        }
+        else if (size == -1) {
+          pic = "assets/horizontalLargeNoDarkmode.PNG";
+        }
+        else { //size == 1
+          pic = "assets/horizontalSmallNoDarkmode.PNG";
+        }
       }
     }
 
-    final listView = ListView(
-      scrollDirection: Axis.vertical,
+    return pic;
+  }
+
+  Container getOrientation(bool vertical) {
+    String pic = getCorrectPicForOrientation(vertical);
+
+    Image img = new Image.asset(pic);
+    //print(img.height);  // is null, more investigation needed
+
+    final listView = ListView.builder(
+      itemCount: 8,
+      controller: _controller,
       //padding: EdgeInsets.all(8.0),
-      children: <Widget>[
-        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        //Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        //Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        //Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        //Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        //Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-      ],
+      scrollDirection: Axis.vertical,
+      itemBuilder: (context, index) {
+        return Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center);
+      },
     );
 
     return Container(
         child: listView);
   }
 
+  portraitOrientation() {
+    return getOrientation(true);
+  }
+
   landscapeOrientation() {
-    String pic;
-    if (darkmode) {
-      if (size == 0) {
-        pic = "assets/horizontalNormalDarkmode.PNG";
-      }
-      else if (size == -1) {
-        pic = "assets/horizontalLargeDarkmode.PNG";
-      }
-      else { //size == 1
-        pic = "assets/horizontalSmallDarkmode.PNG";
-      }
-    } else { // no dark mode
-      if (size == 0) {
-        pic = "assets/horizontalNormalNoDarkmode.PNG";
-      }
-      else if (size == -1) {
-        pic = "assets/horizontalLargeNoDarkmode.PNG";
-      }
-      else { //size == 1
-        pic = "assets/horizontalSmallNoDarkmode.PNG";
-      }
-    }
-
-    final listView = ListView(
-      scrollDirection: Axis.vertical,
-      //padding: EdgeInsets.all(8.0),
-      children: <Widget>[
-        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-      ],
-    );
-
-    return Container(
-        child: listView);
+    return getOrientation(false);
   }
 }

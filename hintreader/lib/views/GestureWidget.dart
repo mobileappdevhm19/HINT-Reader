@@ -53,9 +53,9 @@ class _GestureWidgetState extends State<GestureWidget> {
       onHorizontalDragEnd: (details)  {
         double result = startX - endX;
         if (result > 0)  {
-          print("Swipe Left");
+          _view.scrollDown();
         }  else  {
-          print("Swipe Right");
+          _view.scrollUp();
         }
       }
     );
