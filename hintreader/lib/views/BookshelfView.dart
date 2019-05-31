@@ -28,13 +28,52 @@ class _BookshelfState extends State<Bookshelf> {
         title: Text(widget.title),
       ),
       body:
-      OrientationBuilder(
+      /*OrientationBuilder(
         builder: (context, orientation) {
           return orientation == Orientation.portrait
               ? verticalTable()
               : horizontalTable();
         },
-      ),
+      ),*/
+      bookGrid()
+    );
+  }
+
+  bookGrid() {
+    return GridView.count(
+      crossAxisCount: 3, //how many books per row
+      // Generate 100 Widgets that display their index in the List
+      children: List.generate(9, (index) {
+        return bookGridItem(index);
+      }),
+    );
+  }
+
+  /*bookGridItems(int howMany) {
+    return
+  }*/
+
+  bookGridItem(int m) {
+  return Container(
+        color: Colors.red,
+        constraints: BoxConstraints.loose(box),
+        child: books[m % (books.length - 1)] == true
+            ? FlatButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (BuildContext context) =>
+                      BookView("My Book", false, 0)));
+            },
+            child:
+            Image.asset("assets/book-stack.png",
+              height: (height / 7),
+              width: (width / 7),
+            )
+        )
+            : Image.asset("assets/main_icon.png",
+          height: (height / 7),
+          width: (width / 7),
+        )
     );
   }
 
@@ -212,6 +251,8 @@ class _BookshelfState extends State<Bookshelf> {
       ],
     );
   }
+
+
 
   scaleImageSize() {
     width = MediaQuery.of(context).size.width;
