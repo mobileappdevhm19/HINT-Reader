@@ -35,15 +35,33 @@ class _BookshelfState extends State<Bookshelf> {
               : horizontalTable();
         },
       ),*/
-      bookGrid()
+      //bookGrid(),
+      Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          //whole library
+        new Expanded(child:
+          bookGrid()),
+      //most recent
+      new Container(
+          height: 100.0, width: MediaQuery.of(context).size.width, child: recentBookGrid()),
+        ],
+      )
+      //bottomNavigationBar: recentBookGrid(),
     );
   }
 
   bookGrid() {
+    var xAC = 3;
+    /*new OrientationBuilder(
+      builder: (context, orientation) {
+      orientation == Orientation.portrait ? xAC = 3
+          : xAC = 5;
+    });*/
+
     return GridView.count(
-      crossAxisCount: 3, //how many books per row
-      // Generate 100 Widgets that display their index in the List
-      children: List.generate(9, (index) {
+      crossAxisCount: xAC, //how many books per row
+      children: List.generate(18, (index) {
         return bookGridItem(index);
       }),
     );
@@ -52,6 +70,17 @@ class _BookshelfState extends State<Bookshelf> {
   /*bookGridItems(int howMany) {
     return
   }*/
+
+
+  recentBookGrid() {
+    return GridView.count(
+      crossAxisCount: 1, //how many books per row
+      scrollDirection: Axis.horizontal,
+      children: List.generate(9, (index) {
+        return bookGridItem(index);
+      }),
+    );
+  }
 
   bookGridItem(int m) {
   return Container(
