@@ -26,23 +26,38 @@ class DBProvider {
     return await openDatabase(path, version: 1, onOpen: (db) {},
         onCreate: (Database db, int version) async {
           await db.execute("CREATE TABLE Book ("
+              "id INTEGER PRIMARY KEY,"
               "title TEXT,"
               "author TEXT,"
-              "picture TEXT,"
+              "picture TEXT"
+              //"opened BIT,"
               ")");
         });
   }
 
   newBook(Book newBook) async {
     final db = await database;
+    //get the biggest id in the table
+    var table = await db.rawQuery("SELECT MAX(id)+1 as id FROM Book");
+    int id = table.first["id"];
+    //insert to the table using the new id
+    var raw = await db.rawInsert(
+        "INSERT Into Book (id,title,author,picture)"
+            " VALUES (?,?,?,?)",
+        [id, newBook.title, newBook.author, newBook.picture]);
+    return raw;
+  }
+
+  /*newBook(Book newBook) async {
+    final db = await database;
     var res = await db.insert("Book", newBook.toMap());
     return res;
-  }
+  }*/
 
   updateBook(Book newBook) async {
     final db = await database;
     var res = await db.update("Book", newBook.toMap(),
-        where: "title = ?", whereArgs: [newBook.title]);
+        where: "id = ?", whereArgs: [newBook.id]);
     return res;
   }
 
@@ -53,17 +68,17 @@ class DBProvider {
   }
 
   ///USEFUL IF WE WANT TO ADD THE FEATURE OPENED, IN THIS WAY WE HAVE A LIST OF THE LAST BOOKS OPENED
-  /*Future<List<Book>> getOpenedBooks() async {
+  Future<List<Book>> getOpenedBooks() async {
     final db = await database;
 
-    print("works");
+    //print("works");
     // var res = await db.rawQuery("SELECT * FROM Book WHERE opened=1");
-    var res = await db.query("Client", where: "blocked = ? ", whereArgs: [1]);
+    var res = await db.query("Client", where: "opened = ? ", whereArgs: [1]);
 
-    List<Client> list =
-    res.isNotEmpty ? res.map((c) => Client.fromMap(c)).toList() : [];
+    List<Book> list =
+    res.isNotEmpty ? res.map((c) => Book.fromMap(c)).toList() : [];
     return list;
-  }*/
+  }
 
   Future<List<Book>> getAllBooks() async {
     final db = await database;

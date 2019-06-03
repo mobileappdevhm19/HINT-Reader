@@ -11,12 +11,14 @@ String BookToJson(Book data) {
 }
 
 class Book {
+  int id;
   String title;
   String author;
   String picture;
   //bool opened;
 
   Book({
+    this.id,
     this.title,
     this.author,
     this.picture,
@@ -24,6 +26,7 @@ class Book {
   });
 
   factory Book.fromMap(Map<String, dynamic> json) => new Book(
+    id: json["id"],
     title: json["title"],
     author: json["author"],
     picture: json["picture"],
@@ -31,6 +34,7 @@ class Book {
   );
 
   Map<String, dynamic> toMap() => {
+    "id": id,
     "title": title,
     "author": author,
     "picture": picture,
