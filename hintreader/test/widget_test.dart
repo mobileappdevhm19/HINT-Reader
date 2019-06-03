@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:hintreader/main.dart';
+import 'package:hintreader/progbar/MyLinearProgressIndicator.dart';
 
 void main() {
   testWidgets('Bookshelf display test', (WidgetTester tester) async {
@@ -408,4 +409,24 @@ void main() {
     expect(tester.firstElement(find.byType(Image)).toString().substring(0, 84), expectImageN);
   });
 
+  testWidgets('Progressbar', (WidgetTester tester) async {
+
+    await tester.pumpWidget(MyApp());
+    await tester.pumpAndSettle();
+    await tester.tap(find.byType(FlatButton));
+    await tester.pumpAndSettle();
+    expect(find.byType(MyLinearProgressIndicator), findsOneWidget);
+  });
+
+  testWidgets('Progressbar value', (WidgetTester tester) async {
+
+    String expectValue = "MyLinearProgressIndicator(33.5%";
+    final bar = MyLinearProgressIndicator();
+    final value = bar.value;
+    await tester.pumpWidget(MyApp());
+    await tester.pumpAndSettle();
+    await tester.tap(find.byType(FlatButton));
+    await tester.pumpAndSettle();
+    expect(tester.firstElement(find.byType(MyLinearProgressIndicator)).toString().substring(0, 31), expectValue);
+  });
 }

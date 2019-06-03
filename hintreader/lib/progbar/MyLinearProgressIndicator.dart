@@ -15,7 +15,7 @@ class MyLinearProgressIndicator extends LinearProgressIndicator
     backgroundColor: backgroundColor,
     valueColor: valueColor,
   ) {
-    preferredSize = Size(double.infinity, _kMyLinearProgressIndicatorHeight);
+    preferredSize = (Size(600.0, _kMyLinearProgressIndicatorHeight));
   }
 
   @override
