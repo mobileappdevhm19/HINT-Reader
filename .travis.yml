@@ -59,10 +59,10 @@ deploy:
     skip_cleanup: true
     file: build/app/outputs/apk/release/app-release.apk
     api_key:
-        secure:$GIT_HUB
+        secure:${GIT_HUB}
     on:
         branch: develop
-        repo: mobileappdevhm19/apps4students-team2
+        repo: mobileappdevhm19/HINT-Reader
         tags: false
 
 
