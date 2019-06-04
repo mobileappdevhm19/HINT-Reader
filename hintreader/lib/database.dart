@@ -115,6 +115,6 @@ class DBProvider {
   //delete all the book
   deleteAll() async {
     final db = await database;
-    db.rawDelete('DELETE FROM User WHERE');
+    db.rawDelete('DELETE * FROM Book');
   }
 }
