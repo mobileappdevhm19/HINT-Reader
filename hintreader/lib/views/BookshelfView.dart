@@ -99,6 +99,7 @@ class _BookshelfState extends State<Bookshelf> {
     vertical = false;
     scaleImageSize();
     print("Horizontal");
+    DBProvider.db.loadBookFromJson(context);
     return Column(
       children: <Widget>[
         Container(
