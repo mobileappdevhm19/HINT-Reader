@@ -1,13 +1,30 @@
 import 'dart:convert';
 
-Book BookFromJson(String str) {
+BookFactory bookFactoryFromJson(String str) {
   final jsonData = json.decode(str);
-  return Book.fromMap(jsonData);
+  return BookFactory.fromJson(jsonData);
 }
 
-String BookToJson(Book data) {
+String bookFactoryToJson(Book data) {
   final dyn = data.toMap();
   return json.encode(dyn);
+}
+
+//Use the contact factory to create a list of contacts out of a valid json string
+class BookFactory {
+  List<Book> books;
+
+  BookFactory({
+    this.books,
+  });
+
+  factory BookFactory.fromJson(Map<String, dynamic> json) => new BookFactory(
+    books: new List<Book>.from(json["books"].map((x) => Book.fromMap(x))),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "books": new List<dynamic>.from(books.map((x) => x.toMap())),
+  };
 }
 
 class Book {

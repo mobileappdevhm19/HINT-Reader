@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:hintreader/BookModel.dart';
@@ -35,6 +36,21 @@ class DBProvider {
         });
   }
 
+  //show a progress indicator, fetch data, close indicator and return
+  void loadBookFromJson(BuildContext context) async {
+    //fetch data from local database
+    var bookList = await getAllBooks();// = await getAllBooks();
+    if(bookList.length == 0) {
+      String data = await DefaultAssetBundle.of(context).loadString(
+          "assets/books.json");
+      var books = bookFactoryFromJson(data).books;
+      //foreach book (we have got from the api) insert into local database
+      books.forEach((book) => newBook(book));
+      bookList = books;
+    }
+    //return bookList; //return the fetched contacts
+  }
+
   newBook(Book newBook) async {
     final db = await database;
     //get the biggest id in the table
@@ -61,6 +77,7 @@ class DBProvider {
     return res;
   }
 
+  //get a book given the title
   getBook(String title) async {
     final db = await database;
     var res = await db.query("Book", where: "title = ?", whereArgs: [title]);
@@ -80,6 +97,7 @@ class DBProvider {
     return list;
   }
 
+  //get all the books in the database
   Future<List<Book>> getAllBooks() async {
     final db = await database;
     var res = await db.query("Book");
@@ -88,13 +106,15 @@ class DBProvider {
     return list;
   }
 
+  //delete a book given the title
   deleteBook(String title) async {
     final db = await database;
     return db.delete("Book", where: "title = ?", whereArgs: [title]);
   }
 
+  //delete all the book
   deleteAll() async {
     final db = await database;
-    db.rawDelete("Delete * from Book");
+    db.rawDelete('DELETE FROM User WHERE');
   }
 }

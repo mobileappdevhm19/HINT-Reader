@@ -93,6 +93,7 @@ flutter:
     - assets/verticalNormalNoDarkmode.PNG
     - assets/verticalSmallDarkmode.PNG
     - assets/verticalSmallNoDarkmode.PNG
+    - books.json
 
 
 flutter_icons:
