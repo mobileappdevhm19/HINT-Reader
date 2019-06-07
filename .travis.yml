@@ -58,8 +58,7 @@ deploy:
     provider: releases
     skip_cleanup: true
     file: build/app/outputs/apk/release/app-release.apk
-    api_key:
-        secure:${GIT_HUB}
+    github_token: $GK_TOKEN
     on:
         branch: develop
         repo: mobileappdevhm19/HINT-Reader
