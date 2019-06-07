@@ -60,7 +60,7 @@ deploy:
     file: $APK_PATH
     api_key: ${GH_TOKEN}
     on:
-        branch: develop
+        branch: master
         repo: mobileappdevhm19/HINT-Reader
         tags: false
 
