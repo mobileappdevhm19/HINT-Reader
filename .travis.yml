@@ -54,4 +54,14 @@ after_success:
 - flutter build apk
 - mv build/app/outputs/apk/release/app-release.apk $APK_PATH
 
+deploy:
+    provider: releases
+    skip_cleanup: true
+    file: $APK_PATH
+    api_key: ${GH_TOKEN}
+    on:
+        branch: master
+        repo: mobileappdevhm19/HINT-Reader
+        tags: false
+
 
