@@ -5,9 +5,11 @@ import 'package:hintreader/BookModel.dart';
 
 class InsertBook extends StatefulWidget {
   @override
-  InsertBookState createState() {return InsertBookState();
+  InsertBookState createState() {
+    return InsertBookState();
   }
 }
+
 class InsertBookState extends State<InsertBook> {
   var _title;
   var _author;

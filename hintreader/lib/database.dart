@@ -37,7 +37,7 @@ class DBProvider {
   }
 
   //show a progress indicator, fetch data, close indicator and return
-  void loadBookFromJson(BuildContext context) async {
+  Future<void> loadBookFromJson(BuildContext context) async {
     //fetch data from local database
     var bookList = await getAllBooks();// = await getAllBooks();
     if(bookList.length == 0) {
@@ -56,6 +56,8 @@ class DBProvider {
     //get the biggest id in the table
     var table = await db.rawQuery("SELECT MAX(id)+1 as id FROM Book");
     int id = table.first["id"];
+    if(newBook.id != null || newBook.id != 0)
+      id = newBook.id;
     //insert to the table using the new id
     var raw = await db.rawInsert(
         "INSERT Into Book (id,title,author,picture)"
@@ -69,6 +71,29 @@ class DBProvider {
     var res = await db.insert("Book", newBook.toMap());
     return res;
   }*/
+
+  //update local database
+  Future<void> updateBooks(BuildContext context) async {
+
+
+    //get the data from the json)
+    String data = await DefaultAssetBundle.of(context).loadString(
+        "assets/books.json");
+    //create a list of all the books in the json
+    var books = bookFactoryFromJson(data).books;
+    //foreach contact call update or create
+    books.forEach((book) => updateOrCreate(book));
+  }
+
+  //update contact if available or create it
+  Future<void> updateOrCreate(Book book) async {
+    //try to update contact
+    var result = await updateBook(book);
+    if (result == 0) {
+      //update will return 1 for true, 0 for false
+      await newBook(book); //insert if update failed
+    }
+  }
 
   updateBook(Book newBook) async {
     final db = await database;
@@ -115,6 +140,7 @@ class DBProvider {
   //delete all the book
   deleteAll() async {
     final db = await database;
-    db.rawDelete('DELETE * FROM Book');
+    List<Book> books = await getAllBooks();
+    books.forEach((book) => db.delete("Book", where: "title = ?", whereArgs: [book.title]));
   }
 }
