@@ -12,23 +12,14 @@ class Bookshelf extends StatefulWidget {
 }
 
 class _BookshelfState extends State<Bookshelf> {
+
   Size box = Size(200, 200);
   double width = 0;
-  double height = 0;
+  double height= 0;
   bool vertical = true;
 
   var books = [
-    true,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false
-  ];
+    true, false, false, false, false, false, false, false, false, false];
   int book = 0;
 
   @override
@@ -108,7 +99,18 @@ class _BookshelfState extends State<Bookshelf> {
           Container(
               constraints: BoxConstraints.loose(box),
               child: books[m % (books.length - 1)] == true
-                  ? BookCard("verticalLargeNoDarkmode.PNG", "Logik", "Immanuel Kant")
+                  ? FlatButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (BuildContext context) =>
+                            BookView("My Book", false, 0)));
+                  },
+                  child:
+                  Image.asset("assets/book-stack.png",
+                    height: (height / 7),
+                    width: (width / 7),
+                  )
+              )
                   : Image.asset("assets/main_icon.png",
                 height: (height / 7),
                 width: (width / 7),
@@ -124,6 +126,6 @@ class _BookshelfState extends State<Bookshelf> {
     height = MediaQuery.of(context).size.height;
 
     print("width: " + width.toString());
-    print("height: " + height.toString());
+    print("height: "+ height.toString());
   }
 }
