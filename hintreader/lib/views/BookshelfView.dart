@@ -30,49 +30,48 @@ class _BookshelfState extends State<Bookshelf>
         actions: <Widget>[
           FlatButton(
             child: Icon(Icons.delete_sweep, color: Colors.orange),
-            onPressed: () =>
-            {
-              showDialog(
-                  context: context,
-                  builder: (context) {
-                    return Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Padding(
-                          padding:
-                          const EdgeInsets.symmetric(vertical: 16.0),
-                          child: RaisedButton(
-                            onPressed: () {
-                                DBProvider.db.deleteAll();
-                                _getBooks();
-                                setState(() {});
-                              Navigator.pop(context);
-                            },
-                            child: Text('Delete all'),
-                          ),
-                        ),
-                        Padding(
-                          padding:
-                          const EdgeInsets.symmetric(vertical: 16.0),
-                          child: RaisedButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) {
-                                  return DeleteBook();
-                                }),
-                              );
-                              _getBooks();
-                              setState(() {});
-                            },
-                            child: Text('Delete a book'),
-                          ),
-                        ),
-                      ],
-                    );
-                  })
-            },
+            onPressed: () => {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 16.0),
+                              child: RaisedButton(
+                                onPressed: () {
+                                  DBProvider.db.deleteAll();
+                                  _getBooks();
+                                  setState(() {});
+                                  Navigator.pop(context);
+                                },
+                                child: Text('Delete all'),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(vertical: 16.0),
+                              child: RaisedButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) {
+                                      return DeleteBook();
+                                    }),
+                                  );
+                                  _getBooks();
+                                  setState(() {});
+                                },
+                                child: Text('Delete a book'),
+                              ),
+                            ),
+                          ],
+                        );
+                      })
+                },
           ),
         ],
         title: Text(widget.title),
@@ -138,50 +137,47 @@ class _BookshelfState extends State<Bookshelf>
   }
 
   verticalTable() {
-    vertical = true;
+    //WITHOUT THIS _getBooks() THE PROGRAM HAS THE PROBLEM DESCRIPTED
+    _getBooks();
     print("Vertical");
     scaleImageSize();
-    //DBProvider.db.loadBookFromJson(context);
     return Container(
         constraints: new BoxConstraints.expand(
           height: 127.0,
         ),
-        child: (_books!=null && _books.length >0) ?
-        ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: _books.length,
-          itemBuilder: (BuildContext context, int index) {
-            Book item = _books[index];
-            return Padding(
-                padding: EdgeInsets.only(right: 8.0),
-                child: BookCard(item.picture, item.title, item.author));
-          },
-        )
-            : Center(child: CircularProgressIndicator())
-    );
+        child: (_books != null && _books.length > 0)
+            ? ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: _books.length,
+                itemBuilder: (BuildContext context, int index) {
+                  Book item = _books[index];
+                  return Padding(
+                      padding: EdgeInsets.only(right: 8.0),
+                      child: BookCard(item.picture, item.title, item.author));
+                },
+              )
+            : Center(child: CircularProgressIndicator()));
   }
 
   horizontalTable() {
-    vertical = false;
-    scaleImageSize();
-    print("Horizontal");
+    //WITHOUT THIS _getBooks() THE PROGRAM HAS THE PROBLEM DESCRIPTED
+    _getBooks();
     return Container(
         constraints: new BoxConstraints.expand(
           height: 127.0,
         ),
-        child: (_books!=null && _books.length >0) ?
-        ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: _books.length,
-          itemBuilder: (BuildContext context, int index) {
-            Book item = _books[index];
-            return Padding(
-                padding: EdgeInsets.only(right: 8.0),
-                child: BookCard(item.picture, item.title, item.author));
-          },
-        )
-            : Center(child: CircularProgressIndicator())
-    );
+        child: (_books != null && _books.length > 0)
+            ? ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: _books.length,
+                itemBuilder: (BuildContext context, int index) {
+                  Book item = _books[index];
+                  return Padding(
+                      padding: EdgeInsets.only(right: 8.0),
+                      child: BookCard(item.picture, item.title, item.author));
+                },
+              )
+            : Center(child: CircularProgressIndicator()));
   }
 
   //use this method to do something after the screen was build the first time
@@ -195,8 +191,8 @@ class _BookshelfState extends State<Bookshelf>
     List<Book> books = new List<Book>(); //create a empty list
     if (update) {
       //if update is marked
-      await DBProvider.db.updateBooks(
-          context); //fetch data from the json and update database
+      await DBProvider.db
+          .updateBooks(context); //fetch data from the json and update database
     }
     books = await DBProvider.db.getAllBooks(); //load contacts from the database
 
@@ -207,14 +203,8 @@ class _BookshelfState extends State<Bookshelf>
   }
 
   scaleImageSize() {
-    width = MediaQuery
-        .of(context)
-        .size
-        .width;
-    height = MediaQuery
-        .of(context)
-        .size
-        .height;
+    width = MediaQuery.of(context).size.width;
+    height = MediaQuery.of(context).size.height;
 
     print("width: " + width.toString());
     print("height: " + height.toString());
