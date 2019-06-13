@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hintreader/views/BookView.dart';
+import 'package:hintreader/BookModel.dart';
+import 'package:hintreader/database.dart';
 
 /// A custom [Card] widget.
 ///
@@ -66,6 +68,7 @@ class BookCard extends StatelessWidget {
           ),
           child: FlatButton(
             onPressed: () {
+              _openTheBook();
               Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -93,5 +96,10 @@ class BookCard extends StatelessWidget {
                         )),],)),
           ))
     ]);
+  }
+
+  _openTheBook() async {
+    Book item = await DBProvider.db.getBook(title);
+    await DBProvider.db.openBook(item);
   }
 }

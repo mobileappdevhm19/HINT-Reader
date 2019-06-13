@@ -32,14 +32,14 @@ class Book {
   String title;
   String author;
   String picture;
-  //bool opened;
+  int opened;
 
   Book({
     this.id,
     this.title,
     this.author,
     this.picture,
-    //this.opened,
+    this.opened,
   });
 
   factory Book.fromMap(Map<String, dynamic> json) => new Book(
@@ -47,7 +47,7 @@ class Book {
     title: json["title"],
     author: json["author"],
     picture: json["picture"],
-    //opened: json["opened"] == 1,
+    opened: json["opened"],
   );
 
   Map<String, dynamic> toMap() => {
@@ -55,6 +55,6 @@ class Book {
     "title": title,
     "author": author,
     "picture": picture,
-    //"opened": opened,
+    "opened": opened,
   };
 }

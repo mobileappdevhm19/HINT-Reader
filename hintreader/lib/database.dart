@@ -24,14 +24,14 @@ class DBProvider {
   initDB() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentsDirectory.path, "TestDB.db");
-    return await openDatabase(path, version: 1, onOpen: (db) {},
+    return await openDatabase(path, version: 2, onOpen: (db) {},
         onCreate: (Database db, int version) async {
           await db.execute("CREATE TABLE Book ("
               "id INTEGER PRIMARY KEY,"
               "title TEXT,"
               "author TEXT,"
-              "picture TEXT"
-              //"opened BIT,"
+              "picture TEXT,"
+              "opened INTEGER"
               ")");
         });
   }
@@ -60,9 +60,9 @@ class DBProvider {
       id = newBook.id;
     //insert to the table using the new id
     var raw = await db.rawInsert(
-        "INSERT Into Book (id,title,author,picture)"
-            " VALUES (?,?,?,?)",
-        [id, newBook.title, newBook.author, newBook.picture]);
+        "INSERT Into Book (id,title,author,picture,opened)"
+            " VALUES (?,?,?,?,?)",
+        [id, newBook.title, newBook.author, newBook.picture, newBook.opened]);
     return raw;
   }
 
@@ -74,7 +74,6 @@ class DBProvider {
 
   //update local database
   Future<void> updateBooks(BuildContext context) async {
-
 
     //get the data from the json)
     String data = await DefaultAssetBundle.of(context).loadString(
@@ -97,9 +96,32 @@ class DBProvider {
 
   updateBook(Book newBook) async {
     final db = await database;
-    var res = await db.update("Book", newBook.toMap(),
-        where: "id = ?", whereArgs: [newBook.id]);
+    //if I update one of the book from the json, I check if there is another book with the same ID
+    Book temp1 = await getBookByID(newBook.id);
+    var res;
+    if(temp1 != null){
+      if(temp1.title != newBook.title) {
+        await deleteBook(temp1.title);
+        await this.newBook(newBook);
+        Book temp2 = Book(title: temp1.title,
+            author: temp1.author,
+            picture: temp1.picture,
+            opened: temp1.opened);
+        await this.newBook(temp2);
+        return 1;
+      }
+      else res = await db.update("Book", newBook.toMap(),
+          where: "id = ?", whereArgs: [newBook.id]);
+    }
+    else res = 0;
     return res;
+  }
+
+  //get a book given the title
+  getBookByID(int id) async {
+    final db = await database;
+    var res = await db.query("Book", where: "id = ?", whereArgs: [id]);
+    return res.isNotEmpty ? Book.fromMap(res.first) : null;
   }
 
   //get a book given the title
@@ -115,11 +137,27 @@ class DBProvider {
 
     //print("works");
     // var res = await db.rawQuery("SELECT * FROM Book WHERE opened=1");
-    var res = await db.query("Client", where: "opened = ? ", whereArgs: [1]);
+    var res = await db.query("Book", where: "opened = ? ", whereArgs: [1]);
 
     List<Book> list =
     res.isNotEmpty ? res.map((c) => Book.fromMap(c)).toList() : [];
     return list;
+  }
+
+  openBook(Book book) async {
+    final db = await database;
+    Book opened = Book(
+        id: book.id,
+        picture: book.picture,
+        title: book.title,
+        author: book.author,
+        opened: 1);
+    print("${opened.opened}");
+    var res = await db.update("Book", opened.toMap(),
+        where: "id = ?", whereArgs: [book.id]);
+    Book temp = await getBook(book.title);
+    print("${temp.opened}");
+    return res;
   }
 
   //get all the books in the database

@@ -1,26 +1,32 @@
 {
   "books": [
     {
+      "id": 1,
       "title": "Logik1",
       "author": "Immanuel Kant1",
-      "picture": "verticalLargeNoDarkmode.PNG"
+      "picture": "verticalLargeNoDarkmode.PNG",
+      "opened": 1
     },
     {
+      "id": 2,
       "title": "Logik2",
       "author": "Immanuel Kant2",
       "picture": "verticalLargeNoDarkmode.PNG"
     },
     {
+      "id": 3,
       "title": "Logik3",
       "author": "Immanuel Kant1",
       "picture": "verticalLargeNoDarkmode.PNG"
     },
     {
+      "id": 4,
       "title": "Logik4",
       "author": "Immanuel Kant1",
       "picture": "verticalLargeDarkmode.PNG"
     },
     {
+      "id": 5,
       "title": "Logik5",
       "author": "Immanuel Kant1",
       "picture": "verticalLargeNoDarkmode.PNG"
