@@ -325,4 +325,62 @@ void main() {
     await tester.pumpAndSettle();
     expect(tester.firstElement(find.byType(MyLinearProgressIndicator)).toString().substring(0, 31), expectValue);
   });
+
+  testWidgets('Test book addind', (WidgetTester tester) async {
+    await tester.pumpWidget(MyApp());
+    expect(find.text("My bookshelf"), findsOneWidget);
+    expect(find.byIcon(Icons.add), findsOneWidget);
+    await tester.tap(find.byIcon(Icons.add));
+    await tester.pumpAndSettle();
+    expect(find.text("Read again the json"), findsOneWidget);
+    expect(find.text("Add a new book"), findsOneWidget);
+    await tester.tap(find.text("Add a new book"));
+    await tester.pumpAndSettle();
+    expect(find.text("Insert the new book"), findsOneWidget);
+    await tester.tap(find.text("Add"));
+    await tester.pumpAndSettle();
+  });
+
+  testWidgets('Test book read json', (WidgetTester tester) async {
+    await tester.pumpWidget(MyApp());
+    expect(find.text("My bookshelf"), findsOneWidget);
+    expect(find.byIcon(Icons.add), findsOneWidget);
+    await tester.tap(find.byIcon(Icons.add));
+    await tester.pumpAndSettle();
+    expect(find.text("Read again the json"), findsOneWidget);
+    expect(find.text("Add a new book"), findsOneWidget);
+    await tester.tap(find.text("Read again the json"));
+    await tester.pumpAndSettle();
+    expect(find.text("My bookshelf"), findsOneWidget);
+  });
+
+  testWidgets('Test book all deleting', (WidgetTester tester) async {
+    await tester.pumpWidget(MyApp());
+    expect(find.text("My bookshelf"), findsOneWidget);
+    expect(find.byIcon(Icons.delete_sweep), findsOneWidget);
+    await tester.tap(find.byIcon(Icons.delete_sweep));
+    await tester.pumpAndSettle();
+    expect(find.text("Delete all"), findsOneWidget);
+    expect(find.text("Delete a book"), findsOneWidget);
+    await tester.tap(find.text("Delete all"));
+    await tester.pumpAndSettle();
+    expect(find.text("My bookshelf"), findsOneWidget);
+  });
+
+  testWidgets('Test book one deleting', (WidgetTester tester) async {
+    await tester.pumpWidget(MyApp());
+    expect(find.text("My bookshelf"), findsOneWidget);
+    expect(find.byIcon(Icons.delete_sweep), findsOneWidget);
+    await tester.tap(find.byIcon(Icons.delete_sweep));
+    await tester.pumpAndSettle();
+    expect(find.text("Delete all"), findsOneWidget);
+    expect(find.text("Delete a book"), findsOneWidget);
+    await tester.tap(find.text("Delete a book"));
+    await tester.pumpAndSettle();
+    expect(find.text("Delete the new book"), findsOneWidget);
+    await tester.tap(find.text("delete"));
+    await tester.pumpAndSettle();
+  });
+
+
 }
