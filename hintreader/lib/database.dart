@@ -56,10 +56,28 @@ class DBProvider {
     //get the biggest id in the table
     var table = await db.rawQuery("SELECT MAX(id)+1 as id FROM Book");
     int id = table.first["id"];
-    if(newBook.id != null || newBook.id != 0)
+    if(newBook.id != null && newBook.id != 0)
       id = newBook.id;
     //insert to the table using the new id
-    var raw = await db.rawInsert(
+    var raw;
+    Book temp1 = await getBookByID(id);
+    if(temp1 != null) {
+      if(temp1.title != newBook.title) {
+        await deleteBook(temp1.title);
+        raw = await db.rawInsert(
+            "INSERT Into Book (id,title,author,picture,opened)"
+                " VALUES (?,?,?,?,?)",
+            [id, newBook.title, newBook.author, newBook.picture, newBook.opened]);
+        Book temp2 = Book(title: temp1.title,
+            author: temp1.author,
+            picture: temp1.picture,
+            opened: temp1.opened);
+        await this.newBook(temp2);
+        return raw;
+      }
+      else return 1;
+    }
+    else raw = await db.rawInsert(
         "INSERT Into Book (id,title,author,picture,opened)"
             " VALUES (?,?,?,?,?)",
         [id, newBook.title, newBook.author, newBook.picture, newBook.opened]);

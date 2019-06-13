@@ -12,13 +12,10 @@ class BookCard extends StatelessWidget {
   String title="n.a.";
   String author="n.a.";
 
-  /// Creates a [Card].
+  /// Creates a [BookCard].
   ///
-  /// A [Category] saves the name of the Category (e.g. 'Length'), its color for
-  /// the UI, and the icon that represents it (e.g. a ruler).
-  // While the @required checks for whether a named parameter is passed in,
-  // it doesn't check whether the object passed in is null. We check that
-  // in the assert statement.
+  /// A [BookCard] saves the title of the book, its author for
+  /// and the picture that represents it.
   BookCard(
       String picture,
       String title,
@@ -29,9 +26,9 @@ class BookCard extends StatelessWidget {
     this.author = author;
   }
 
-  /// Builds a custom widget that shows the [Card].
+  /// Builds a custom widget that shows the [BookCard].
   ///
-  /// This information includes the picture, title, and author for the [Card].
+  /// This information includes the picture, title, and author for the [BookCard].
   @override
   // This `context` parameter describes the location of this widget in the
   // widget tree. It can be used for obtaining Theme data from the nearest

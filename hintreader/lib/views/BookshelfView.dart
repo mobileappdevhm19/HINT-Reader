@@ -148,8 +148,7 @@ class _BookshelfState extends State<Bookshelf>
     return GridView.count(
       crossAxisCount: xAC, //how many books per row
       children: List.generate(books != null ? books.length : 0, (index) {
-        return BookCard(
-            books[index].picture, books[index].title, books[index].author);
+        return bookGridItem(books[index]);
       }),
     );
   }
@@ -159,8 +158,7 @@ class _BookshelfState extends State<Bookshelf>
       crossAxisCount: 1, //how many books per row
       scrollDirection: Axis.horizontal,
       children: List.generate(books != null ? books.length : 0, (index) {
-        return BookCard(
-            books[index].picture, books[index].title, books[index].author);
+        return bookGridItem(books[index]);
       }),
     );
   }

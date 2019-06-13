@@ -22,9 +22,16 @@ void main() {
     await tester.pumpWidget(MyApp());
     expect(find.text("My bookshelf"), findsOneWidget);
     await tester.pumpAndSettle();
-    expect(find.byType(FlatButton), findsWidgets);
-    await tester.tap(find.byType(FlatButton));
+    //expect(find.byType(FlatButton), findsOneWidget);
+    expect(find.byType(FloatingActionButton), findsOneWidget);
+    await tester.tap(find.byType(FloatingActionButton));
     await tester.pumpAndSettle();
+    expect(find.byType(RaisedButton), findsNWidgets(2));
+    expect(find.text("Read again the json"), findsOneWidget);
+    await tester.tap(find.text("Read again the json"));
+    await tester.pumpAndSettle();
+    //await tester.tap(find.byType(FlatButton));
+    //await tester.pumpAndSettle();
     expect(find.byType(ListView), findsOneWidget);
     expect(find.byIcon(Icons.wb_sunny), findsOneWidget);
     expect(find.text("A"), findsOneWidget);
