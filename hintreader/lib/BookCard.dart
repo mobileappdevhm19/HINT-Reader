@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hintreader/views/BookView.dart';
 import 'package:hintreader/BookModel.dart';
 import 'package:hintreader/database.dart';
+import 'package:hintreader/views/BookshelfView.dart';
+
 
 /// A custom [Card] widget.
 ///
@@ -66,6 +68,7 @@ class BookCard extends StatelessWidget {
           child: FlatButton(
             onPressed: () {
               _openTheBook();
+              Bookshelf.fromBookView = true;
               Navigator.push(
                   context,
                   MaterialPageRoute(

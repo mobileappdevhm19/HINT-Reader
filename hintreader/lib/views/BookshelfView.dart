@@ -10,6 +10,7 @@ class Bookshelf extends StatefulWidget {
   Bookshelf(this.title);
 
   final String title;
+  static bool fromBookView = false;
 
   @override
   _BookshelfState createState() => _BookshelfState();
@@ -26,54 +27,56 @@ class _BookshelfState extends State<Bookshelf>
 
   @override
   Widget build(BuildContext context) {
-    if (_books != null) _getBooks();
-    return Scaffold(
+    print("CAZZO");
+    //this is needed to update the openedBook list
+    if(Bookshelf.fromBookView) {
+      _getBooks();
+      Bookshelf.fromBookView = false;
+    }
+      return Scaffold(
         appBar: AppBar(
           actions: <Widget>[
             FlatButton(
               child: Icon(Icons.delete_sweep, color: Colors.orange),
               onPressed: () => {
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 16.0),
-                                child: RaisedButton(
-                                  onPressed: () {
-                                    DBProvider.db.deleteAll();
-                                    _getBooks();
-                                    setState(() {});
-                                    Navigator.pop(context);
-                                  },
-                                  child: Text('Delete all'),
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 16.0),
-                                child: RaisedButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(builder: (context) {
-                                        return DeleteBook();
-                                      }),
-                                    );
-                                    _getBooks();
-                                    setState(() {});
-                                  },
-                                  child: Text('Delete a book'),
-                                ),
-                              ),
-                            ],
-                          );
-                        })
-                  },
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Padding(
+                            padding:
+                            const EdgeInsets.symmetric(vertical: 16.0),
+                            child: RaisedButton(
+                              onPressed: () {
+                                DBProvider.db.deleteAll().then((value) =>
+                                    _getBooks());
+                                Navigator.pop(context);
+                              },
+                              child: Text('Delete all'),
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                            const EdgeInsets.symmetric(vertical: 16.0),
+                            child: RaisedButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) {
+                                    return DeleteBook();
+                                  }),
+                                ).then((value) => _getBooks());
+                              },
+                              child: Text('Delete a book'),
+                            ),
+                          ),
+                        ],
+                      );
+                    })
+              },
             ),
           ],
           title: Text(widget.title),
@@ -95,51 +98,48 @@ class _BookshelfState extends State<Bookshelf>
                 child: recentBookGrid(_openedBooks)),
           ],
         ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.orange,
-        child: Icon(Icons.add),
-        onPressed: () {
-          showDialog(
-              context: context,
-              builder: (context) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      child: RaisedButton(
-                        onPressed: () {
-                          _getBooks(true);
-                          setState(() {});
-                          Navigator.pop(context);
-                        },
-                        child: Text('Read again the json'),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.orange,
+          child: Icon(Icons.add),
+          onPressed: () {
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 16.0),
+                        child: RaisedButton(
+                          onPressed: () {
+                            _getBooks(update: true).then((value) => _getBooks());
+                            Navigator.pop(context);
+                          },
+                          child: Text('Read again the json'),
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16.0),
-                      child: RaisedButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) {
-                              return InsertBook();
-                            }),
-                          );
-                          _getBooks();
-                          setState(() {});
-                        },
-                        child: Text('Add a new book'),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 16.0),
+                        child: RaisedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                return InsertBook();
+                              }),
+                            ).then((value) => _getBooks());
+                          },
+                          child: Text('Add a new book'),
+                        ),
                       ),
-                    ),
-                  ],
-                );
-              });
-        },
-      ),
+                    ],
+                  );
+                });
+          },
+        ),
         //bottomNavigationBar: recentBookGrid(),
-        );
+      );
   }
 
   bookGrid(List<Book> books) {
@@ -172,12 +172,11 @@ class _BookshelfState extends State<Bookshelf>
   //use this method to do something after the screen was build the first time
   @override
   void afterFirstLayout(BuildContext context) {
-    DBProvider.db.loadBookFromJson(context);
-    _getBooks(true);
+    DBProvider.db.loadBookFromJson(context).then((value) => _getBooks());
   }
 
   //get all the books
-  Future<void> _getBooks([bool update = false]) async {
+  Future<void> _getBooks({bool update = false, bool rebuild = true}) async {
     List<Book> books = new List<Book>(); //create a empty list
     List<Book> openedBooks = new List<Book>(); //create a empty list
     if (update) {
@@ -190,10 +189,12 @@ class _BookshelfState extends State<Bookshelf>
         await DBProvider.db.getOpenedBooks(); //load contacts from the database
 
     //call set state to change the displayed contacts
-    setState(() {
-      _books = books;
-      _openedBooks = openedBooks;
-    });
+    if(rebuild == true) {
+      setState(() {
+        _books = books;
+        _openedBooks = openedBooks;
+      });
+    }
   }
 
   scaleImageSize() {

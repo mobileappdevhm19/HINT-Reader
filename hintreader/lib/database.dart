@@ -12,6 +12,7 @@ class DBProvider {
 
   static final DBProvider db = DBProvider._();
 
+  int id = 1;
   Database _database;
 
   Future<Database> get database async {
@@ -54,10 +55,14 @@ class DBProvider {
   newBook(Book newBook) async {
     final db = await database;
     //get the biggest id in the table
-    var table = await db.rawQuery("SELECT MAX(id)+1 as id FROM Book");
-    int id = table.first["id"];
+    /*var table = await db.rawQuery("SELECT MAX(id)+1 as id FROM Book");
+    int id = table.first["id"];*/
+    var books = await getAllBooks();
+    int id=1;
+    if(books.length>0) id = books[books.length-1].id+1;
     if(newBook.id != null && newBook.id != 0)
       id = newBook.id;
+    print("CAZZO ${id} ${newBook.title}");
     //insert to the table using the new id
     var raw;
     Book temp1 = await getBookByID(id);
@@ -99,7 +104,9 @@ class DBProvider {
     //create a list of all the books in the json
     var books = bookFactoryFromJson(data).books;
     //foreach contact call update or create
-    books.forEach((book) => updateOrCreate(book));
+    for(int i=0; i<books.length; i++){
+      await updateOrCreate(books[i]);
+    }
   }
 
   //update contact if available or create it
@@ -107,6 +114,7 @@ class DBProvider {
     //try to update contact
     var result = await updateBook(book);
     if (result == 0) {
+      print("NOT UPDATING,INSERTING ${book.title}");
       //update will return 1 for true, 0 for false
       await newBook(book); //insert if update failed
     }
@@ -119,9 +127,11 @@ class DBProvider {
     var res;
     if(temp1 != null){
       if(temp1.title != newBook.title) {
+        print("FOUND ANOTHER ID ${newBook.title}");
         await deleteBook(temp1.title);
         await this.newBook(newBook);
-        Book temp2 = Book(title: temp1.title,
+        Book temp2 = Book(id: null,
+            title: temp1.title,
             author: temp1.author,
             picture: temp1.picture,
             opened: temp1.opened);
