@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hintreader/progbar/MyLinearProgressIndicator.dart';
 
 class BookView extends StatefulWidget {
   BookView(this.title, this.darkmode, this.size);
@@ -37,6 +38,10 @@ class _BookViewState extends State<BookView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+          bottom: MyLinearProgressIndicator(
+            backgroundColor: colorCustom,
+            value: calculateProgressBar(),
+          ),
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
           actions: <Widget>[
@@ -89,6 +94,8 @@ class _BookViewState extends State<BookView> {
           ]),
       body: OrientationBuilder(
         builder: (context, orientation) {
+
+
           return orientation == Orientation.portrait
               ? portraitOrientation()
               : landscapeOrientation();
@@ -192,5 +199,9 @@ class _BookViewState extends State<BookView> {
 
     return Container(
         child: listView);
+  }
+
+  calculateProgressBar() {
+    return 0.335;
   }
 }

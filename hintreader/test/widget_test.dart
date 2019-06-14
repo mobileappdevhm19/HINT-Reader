@@ -7,8 +7,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hintreader/BookCard.dart';
 
 import 'package:hintreader/main.dart';
+import 'package:hintreader/progbar/MyLinearProgressIndicator.dart';
+import 'package:hintreader/views/BookView.dart';
+import 'package:hintreader/views/BookshelfView.dart';
 
 void main() {
   testWidgets('Bookshelf display test', (WidgetTester tester) async {
@@ -19,13 +23,10 @@ void main() {
 
 
   testWidgets('Change to BookvIew test', (WidgetTester tester) async {
-    await tester.pumpWidget(MyApp());
-    expect(find.text("My bookshelf"), findsOneWidget);
-    await tester.pumpAndSettle();
-    expect(find.byType(FlatButton), findsWidgets);
-    await tester.tap(find.byType(FlatButton));
+    await tester.pumpWidget(new MaterialApp(home: BookView("My Book", false, 0),));
     await tester.pumpAndSettle();
     expect(find.byType(ListView), findsOneWidget);
+    expect(find.byIcon(Icons.wb_sunny), findsOneWidget);
     expect(find.byIcon(Icons.wb_sunny), findsOneWidget);
     expect(find.text("A"), findsOneWidget);
     expect(find.text("a"), findsOneWidget);
@@ -33,15 +34,10 @@ void main() {
 
 
   testWidgets('Test orientation of BookView landscape', (WidgetTester tester) async {
-    await tester.pumpWidget(MyApp());
     final TestWidgetsFlutterBinding binding =
-        TestWidgetsFlutterBinding.ensureInitialized();
-    await binding.setSurfaceSize(Size(800.0, 600.0));
+    TestWidgetsFlutterBinding.ensureInitialized();
+    await tester.pumpWidget(new MaterialApp(home: BookView("My Book", false, 0),));
     await tester.pumpAndSettle();
-    expect(find.text("My bookshelf"), findsOneWidget);
-    await tester.pumpAndSettle();
-    expect(find.byType(FlatButton), findsWidgets);
-    await tester.tap(find.byType(FlatButton));
     await tester.pumpAndSettle();
     await binding.setSurfaceSize(Size(800.0, 600.0));
     await tester.pumpAndSettle();
@@ -52,15 +48,9 @@ void main() {
   });
 
   testWidgets('Test orientation of BookView portrait', (WidgetTester tester) async {
-    await tester.pumpWidget(MyApp());
     final TestWidgetsFlutterBinding binding =
         TestWidgetsFlutterBinding.ensureInitialized();
-    await binding.setSurfaceSize(Size(600.0, 800.0));
-    await tester.pumpAndSettle();
-    expect(find.text("My bookshelf"), findsOneWidget);
-    await tester.pumpAndSettle();
-    expect(find.byType(FlatButton), findsWidgets);
-    await tester.tap(find.byType(FlatButton));
+    await tester.pumpWidget(new MaterialApp(home: BookView("My Book", false, 0),));
     await tester.pumpAndSettle();
     await binding.setSurfaceSize(Size(600.0, 800.0));
     await tester.pumpAndSettle();
@@ -76,15 +66,9 @@ void main() {
 
     String expectImage = "Image(image: AssetImage(bundle: null, name: \"assets/horizontalNormalNoDarkmode.PNG\")";
 
-    await tester.pumpWidget(MyApp());
     final TestWidgetsFlutterBinding binding =
     TestWidgetsFlutterBinding.ensureInitialized();
-    await binding.setSurfaceSize(Size(800.0, 600.0));
-    await tester.pumpAndSettle();
-    expect(find.text("My bookshelf"), findsOneWidget);
-    await tester.pumpAndSettle();
-    expect(find.byType(FlatButton), findsWidgets);
-    await tester.tap(find.byType(FlatButton));
+    await tester.pumpWidget(new MaterialApp(home: BookView("My Book", false, 0),));
     await tester.pumpAndSettle();
     await binding.setSurfaceSize(Size(800.0, 600.0));
     await tester.pumpAndSettle();
@@ -95,15 +79,9 @@ void main() {
 
     String expectImage = "Image(image: AssetImage(bundle: null, name: \"assets/horizontalSmallNoDarkmode.PNG\")";
 
-    await tester.pumpWidget(MyApp());
     final TestWidgetsFlutterBinding binding =
     TestWidgetsFlutterBinding.ensureInitialized();
-    await binding.setSurfaceSize(Size(800.0, 600.0));
-    await tester.pumpAndSettle();
-    expect(find.text("My bookshelf"), findsOneWidget);
-    await tester.pumpAndSettle();
-    expect(find.byType(FlatButton), findsWidgets);
-    await tester.tap(find.byType(FlatButton));
+    await tester.pumpWidget(new MaterialApp(home: BookView("My Book", false, 0),));
     await tester.pumpAndSettle();
     await binding.setSurfaceSize(Size(800.0, 600.0));
     await tester.pumpAndSettle();
@@ -116,15 +94,9 @@ void main() {
 
     String expectImage = "Image(image: AssetImage(bundle: null, name: \"assets/horizontalLargeNoDarkmode.PNG\")";
 
-    await tester.pumpWidget(MyApp());
     final TestWidgetsFlutterBinding binding =
     TestWidgetsFlutterBinding.ensureInitialized();
-    await binding.setSurfaceSize(Size(800.0, 600.0));
-    await tester.pumpAndSettle();
-    expect(find.text("My bookshelf"), findsOneWidget);
-    await tester.pumpAndSettle();
-    expect(find.byType(FlatButton), findsWidgets);
-    await tester.tap(find.byType(FlatButton));
+    await tester.pumpWidget(new MaterialApp(home: BookView("My Book", false, 0),));
     await tester.pumpAndSettle();
     await binding.setSurfaceSize(Size(800.0, 600.0));
     await tester.pumpAndSettle();
@@ -137,15 +109,9 @@ void main() {
 
     String expectImage = "Image(image: AssetImage(bundle: null, name: \"assets/horizontalNormalDarkmode.PNG\")";
 
-    await tester.pumpWidget(MyApp());
     final TestWidgetsFlutterBinding binding =
     TestWidgetsFlutterBinding.ensureInitialized();
-    await binding.setSurfaceSize(Size(800.0, 600.0));
-    await tester.pumpAndSettle();
-    expect(find.text("My bookshelf"), findsOneWidget);
-    await tester.pumpAndSettle();
-    expect(find.byType(FlatButton), findsWidgets);
-    await tester.tap(find.byType(FlatButton));
+    await tester.pumpWidget(new MaterialApp(home: BookView("My Book", false, 0),));
     await tester.pumpAndSettle();
     await binding.setSurfaceSize(Size(800.0, 600.0));
     await tester.pumpAndSettle();
@@ -158,15 +124,10 @@ void main() {
 
     String expectImage = "Image(image: AssetImage(bundle: null, name: \"assets/horizontalLargeDarkmode.PNG\")";
 
-    await tester.pumpWidget(MyApp());
     final TestWidgetsFlutterBinding binding =
     TestWidgetsFlutterBinding.ensureInitialized();
     await binding.setSurfaceSize(Size(800.0, 600.0));
-    await tester.pumpAndSettle();
-    expect(find.text("My bookshelf"), findsOneWidget);
-    await tester.pumpAndSettle();
-    expect(find.byType(FlatButton), findsWidgets);
-    await tester.tap(find.byType(FlatButton));
+    await tester.pumpWidget(new MaterialApp(home: BookView("My Book", false, 0),));
     await tester.pumpAndSettle();
     await binding.setSurfaceSize(Size(800.0, 600.0));
     await tester.pumpAndSettle();
@@ -181,15 +142,9 @@ void main() {
 
     String expectImage = "Image(image: AssetImage(bundle: null, name: \"assets/horizontalSmallDarkmode.PNG\")";
 
-    await tester.pumpWidget(MyApp());
     final TestWidgetsFlutterBinding binding =
     TestWidgetsFlutterBinding.ensureInitialized();
-    await binding.setSurfaceSize(Size(800.0, 600.0));
-    await tester.pumpAndSettle();
-    expect(find.text("My bookshelf"), findsOneWidget);
-    await tester.pumpAndSettle();
-    expect(find.byType(FlatButton), findsWidgets);
-    await tester.tap(find.byType(FlatButton));
+    await tester.pumpWidget(new MaterialApp(home: BookView("My Book", false, 0),));
     await tester.pumpAndSettle();
     await binding.setSurfaceSize(Size(800.0, 600.0));
     await tester.pumpAndSettle();
@@ -208,15 +163,9 @@ void main() {
 
     String expectImage = "Image(image: AssetImage(bundle: null, name: \"assets/verticalNormalNoDarkmode.PNG\")";
 
-    await tester.pumpWidget(MyApp());
     final TestWidgetsFlutterBinding binding =
     TestWidgetsFlutterBinding.ensureInitialized();
-    await binding.setSurfaceSize(Size(600.0, 800.0));
-    await tester.pumpAndSettle();
-    expect(find.text("My bookshelf"), findsOneWidget);
-    await tester.pumpAndSettle();
-    expect(find.byType(FlatButton), findsWidgets);
-    await tester.tap(find.byType(FlatButton));
+    await tester.pumpWidget(new MaterialApp(home: BookView("My Book", false, 0),));
     await tester.pumpAndSettle();
     await binding.setSurfaceSize(Size(600.0, 800.0));
     await tester.pumpAndSettle();
@@ -227,15 +176,9 @@ void main() {
 
     String expectImage = "Image(image: AssetImage(bundle: null, name: \"assets/verticalSmallNoDarkmode.PNG\")";
 
-    await tester.pumpWidget(MyApp());
     final TestWidgetsFlutterBinding binding =
     TestWidgetsFlutterBinding.ensureInitialized();
-    await binding.setSurfaceSize(Size(600.0, 800.0));
-    await tester.pumpAndSettle();
-    expect(find.text("My bookshelf"), findsOneWidget);
-    await tester.pumpAndSettle();
-    expect(find.byType(FlatButton), findsWidgets);
-    await tester.tap(find.byType(FlatButton));
+    await tester.pumpWidget(new MaterialApp(home: BookView("My Book", false, 0),));
     await tester.pumpAndSettle();
     await binding.setSurfaceSize(Size(600.0, 800.0));
     await tester.pumpAndSettle();
@@ -248,15 +191,9 @@ void main() {
 
     String expectImage = "Image(image: AssetImage(bundle: null, name: \"assets/verticalLargeNoDarkmode.PNG\")";
 
-    await tester.pumpWidget(MyApp());
     final TestWidgetsFlutterBinding binding =
     TestWidgetsFlutterBinding.ensureInitialized();
-    await binding.setSurfaceSize(Size(600.0, 800.0));
-    await tester.pumpAndSettle();
-    expect(find.text("My bookshelf"), findsOneWidget);
-    await tester.pumpAndSettle();
-    expect(find.byType(FlatButton), findsWidgets);
-    await tester.tap(find.byType(FlatButton));
+    await tester.pumpWidget(new MaterialApp(home: BookView("My Book", false, 0),));
     await tester.pumpAndSettle();
     await binding.setSurfaceSize(Size(600.0, 800.0));
     await tester.pumpAndSettle();
@@ -269,15 +206,9 @@ void main() {
 
     String expectImage = "Image(image: AssetImage(bundle: null, name: \"assets/verticalNormalDarkmode.PNG\")";
 
-    await tester.pumpWidget(MyApp());
     final TestWidgetsFlutterBinding binding =
     TestWidgetsFlutterBinding.ensureInitialized();
-    await binding.setSurfaceSize(Size(600.0, 800.0));
-    await tester.pumpAndSettle();
-    expect(find.text("My bookshelf"), findsOneWidget);
-    await tester.pumpAndSettle();
-    expect(find.byType(FlatButton), findsWidgets);
-    await tester.tap(find.byType(FlatButton));
+    await tester.pumpWidget(new MaterialApp(home: BookView("My Book", false, 0),));
     await tester.pumpAndSettle();
     await binding.setSurfaceSize(Size(600.0, 800.0));
     await tester.pumpAndSettle();
@@ -290,15 +221,9 @@ void main() {
 
     String expectImage = "Image(image: AssetImage(bundle: null, name: \"assets/verticalLargeDarkmode.PNG\")";
 
-    await tester.pumpWidget(MyApp());
     final TestWidgetsFlutterBinding binding =
     TestWidgetsFlutterBinding.ensureInitialized();
-    await binding.setSurfaceSize(Size(600.0, 800.0));
-    await tester.pumpAndSettle();
-    expect(find.text("My bookshelf"), findsOneWidget);
-    await tester.pumpAndSettle();
-    expect(find.byType(FlatButton), findsWidgets);
-    await tester.tap(find.byType(FlatButton));
+    await tester.pumpWidget(new MaterialApp(home: BookView("My Book", false, 0),));
     await tester.pumpAndSettle();
     await binding.setSurfaceSize(Size(600.0, 800.0));
     await tester.pumpAndSettle();
@@ -313,15 +238,9 @@ void main() {
 
     String expectImage = "Image(image: AssetImage(bundle: null, name: \"assets/verticalSmallDarkmode.PNG\")";
 
-    await tester.pumpWidget(MyApp());
     final TestWidgetsFlutterBinding binding =
     TestWidgetsFlutterBinding.ensureInitialized();
-    await binding.setSurfaceSize(Size(600.0, 800.0));
-    await tester.pumpAndSettle();
-    expect(find.text("My bookshelf"), findsOneWidget);
-    await tester.pumpAndSettle();
-    expect(find.byType(FlatButton), findsWidgets);
-    await tester.tap(find.byType(FlatButton));
+    await tester.pumpWidget(new MaterialApp(home: BookView("My Book", false, 0),));
     await tester.pumpAndSettle();
     await binding.setSurfaceSize(Size(600.0, 800.0));
     await tester.pumpAndSettle();
@@ -338,15 +257,9 @@ void main() {
     String expectImageD = "Image(image: AssetImage(bundle: null, name: \"assets/verticalNormalDarkmode.PNG\")";
     String expectImageND = "Image(image: AssetImage(bundle: null, name: \"assets/verticalNormalNoDarkmode.PNG\")";
 
-    await tester.pumpWidget(MyApp());
     final TestWidgetsFlutterBinding binding =
     TestWidgetsFlutterBinding.ensureInitialized();
-    await binding.setSurfaceSize(Size(600.0, 800.0));
-    await tester.pumpAndSettle();
-    expect(find.text("My bookshelf"), findsOneWidget);
-    await tester.pumpAndSettle();
-    expect(find.byType(FlatButton), findsWidgets);
-    await tester.tap(find.byType(FlatButton));
+    await tester.pumpWidget(new MaterialApp(home: BookView("My Book", false, 0),));
     await tester.pumpAndSettle();
     await binding.setSurfaceSize(Size(600.0, 800.0));
     await tester.pumpAndSettle();
@@ -363,15 +276,9 @@ void main() {
     String expectImageS = "Image(image: AssetImage(bundle: null, name: \"assets/verticalSmallNoDarkmode.PNG\")";
     String expectImageN = "Image(image: AssetImage(bundle: null, name: \"assets/verticalNormalNoDarkmode.PNG\")";
 
-    await tester.pumpWidget(MyApp());
     final TestWidgetsFlutterBinding binding =
     TestWidgetsFlutterBinding.ensureInitialized();
-    await binding.setSurfaceSize(Size(600.0, 800.0));
-    await tester.pumpAndSettle();
-    expect(find.text("My bookshelf"), findsOneWidget);
-    await tester.pumpAndSettle();
-    expect(find.byType(FlatButton), findsWidgets);
-    await tester.tap(find.byType(FlatButton));
+    await tester.pumpWidget(new MaterialApp(home: BookView("My Book", false, 0),));
     await tester.pumpAndSettle();
     await binding.setSurfaceSize(Size(600.0, 800.0));
     await tester.pumpAndSettle();
@@ -388,15 +295,9 @@ void main() {
     String expectImageL = "Image(image: AssetImage(bundle: null, name: \"assets/horizontalLargeNoDarkmode.PNG\")";
     String expectImageN = "Image(image: AssetImage(bundle: null, name: \"assets/horizontalNormalNoDarkmode.PNG\")";
 
-    await tester.pumpWidget(MyApp());
     final TestWidgetsFlutterBinding binding =
     TestWidgetsFlutterBinding.ensureInitialized();
-    await binding.setSurfaceSize(Size(800.0, 600.0));
-    await tester.pumpAndSettle();
-    expect(find.text("My bookshelf"), findsOneWidget);
-    await tester.pumpAndSettle();
-    expect(find.byType(FlatButton), findsWidgets);
-    await tester.tap(find.byType(FlatButton));
+    await tester.pumpWidget(new MaterialApp(home: BookView("My Book", false, 0),));
     await tester.pumpAndSettle();
     await binding.setSurfaceSize(Size(800.0, 600.0));
     await tester.pumpAndSettle();
@@ -407,5 +308,79 @@ void main() {
     await tester.pumpAndSettle();
     expect(tester.firstElement(find.byType(Image)).toString().substring(0, 84), expectImageN);
   });
+
+  testWidgets('Progressbar', (WidgetTester tester) async {
+
+    await tester.pumpWidget(new MaterialApp(home: BookView("My Book", false, 0),));
+    await tester.pumpAndSettle();
+    expect(find.byType(MyLinearProgressIndicator), findsOneWidget);
+  });
+
+  testWidgets('Progressbar value', (WidgetTester tester) async {
+
+    String expectValue = "MyLinearProgressIndicator(33.5%";
+    final bar = MyLinearProgressIndicator();
+    final value = bar.value;
+    await tester.pumpWidget(new MaterialApp(home: BookView("My Book", false, 0),));
+    await tester.pumpAndSettle();
+    expect(tester.firstElement(find.byType(MyLinearProgressIndicator)).toString().substring(0, 31), expectValue);
+  });
+
+  testWidgets('Test book addind', (WidgetTester tester) async {
+    await tester.pumpWidget(MyApp());
+    expect(find.text("My bookshelf"), findsOneWidget);
+    expect(find.byIcon(Icons.add), findsOneWidget);
+    await tester.tap(find.byIcon(Icons.add));
+    await tester.pumpAndSettle();
+    expect(find.text("Read again the json"), findsOneWidget);
+    expect(find.text("Add a new book"), findsOneWidget);
+    await tester.tap(find.text("Add a new book"));
+    await tester.pumpAndSettle();
+    expect(find.text("Insert the new book"), findsOneWidget);
+    await tester.tap(find.text("Add"));
+    await tester.pumpAndSettle();
+  });
+
+  testWidgets('Test book read json', (WidgetTester tester) async {
+    await tester.pumpWidget(MyApp());
+    expect(find.text("My bookshelf"), findsOneWidget);
+    expect(find.byIcon(Icons.add), findsOneWidget);
+    await tester.tap(find.byIcon(Icons.add));
+    await tester.pumpAndSettle();
+    expect(find.text("Read again the json"), findsOneWidget);
+    expect(find.text("Add a new book"), findsOneWidget);
+    await tester.tap(find.text("Read again the json"));
+    await tester.pumpAndSettle();
+    expect(find.text("My bookshelf"), findsOneWidget);
+  });
+
+  testWidgets('Test book all deleting', (WidgetTester tester) async {
+    await tester.pumpWidget(MyApp());
+    expect(find.text("My bookshelf"), findsOneWidget);
+    expect(find.byIcon(Icons.delete_sweep), findsOneWidget);
+    await tester.tap(find.byIcon(Icons.delete_sweep));
+    await tester.pumpAndSettle();
+    expect(find.text("Delete all"), findsOneWidget);
+    expect(find.text("Delete a book"), findsOneWidget);
+    await tester.tap(find.text("Delete all"));
+    await tester.pumpAndSettle();
+    expect(find.text("My bookshelf"), findsOneWidget);
+  });
+
+  testWidgets('Test book one deleting', (WidgetTester tester) async {
+    await tester.pumpWidget(MyApp());
+    expect(find.text("My bookshelf"), findsOneWidget);
+    expect(find.byIcon(Icons.delete_sweep), findsOneWidget);
+    await tester.tap(find.byIcon(Icons.delete_sweep));
+    await tester.pumpAndSettle();
+    expect(find.text("Delete all"), findsOneWidget);
+    expect(find.text("Delete a book"), findsOneWidget);
+    await tester.tap(find.text("Delete a book"));
+    await tester.pumpAndSettle();
+    expect(find.text("Delete the new book"), findsOneWidget);
+    await tester.tap(find.text("delete"));
+    await tester.pumpAndSettle();
+  });
+
 
 }
