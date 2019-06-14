@@ -337,6 +337,12 @@ void main() {
     await tester.tap(find.text("Add a new book"));
     await tester.pumpAndSettle();
     expect(find.text("Insert the new book"), findsOneWidget);
+    expect(find.byKey(new Key("MyTitleField")), findsOneWidget);
+    await tester.pump(Duration(milliseconds:400));
+    await tester.enterText(find.byKey(new Key("MyTitleField")), "newTitle");
+    expect(find.byKey(new Key("MyAuthorField")), findsOneWidget);
+    await tester.pump(Duration(milliseconds:400));
+    await tester.enterText(find.byKey(new Key("MyAuthorField")), "newAuthor");
     await tester.tap(find.text("Add"));
     await tester.pumpAndSettle();
   });
@@ -378,6 +384,9 @@ void main() {
     await tester.tap(find.text("Delete a book"));
     await tester.pumpAndSettle();
     expect(find.text("Delete the new book"), findsOneWidget);
+    expect(find.byType(TextFormField), findsOneWidget);
+    await tester.pump(Duration(milliseconds:400));
+    await tester.enterText(find.byType(EditableText), "Logik1");
     await tester.tap(find.text("delete"));
     await tester.pumpAndSettle();
   });

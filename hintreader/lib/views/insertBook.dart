@@ -14,8 +14,8 @@ class InsertBookState extends State<InsertBook> {
   var _title;
   var _author;
   static final _formKey = GlobalKey<FormState>();
-  Key _k1 = new GlobalKey();
-  Key _k2 = new GlobalKey();
+  Key _k1 = new Key("MyTitleField");
+  Key _k2 = new Key("MyAuthorField");
 
   @override
   Widget build(BuildContext context) {
