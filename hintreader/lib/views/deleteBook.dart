@@ -52,7 +52,6 @@ class DeleteBookState extends State<DeleteBook> {
     else {
       DBProvider.db.deleteBook(title);
       Navigator.pop(context);
-      setState(() {});
     }
   }
 }

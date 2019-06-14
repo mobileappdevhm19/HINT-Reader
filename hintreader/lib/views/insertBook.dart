@@ -54,7 +54,7 @@ class InsertBookState extends State<InsertBook> {
     );
   }
 
-  void _addBook(String title, String author, BuildContext context) {
+  void _addBook(String title, String author, BuildContext context) async {
     if (title == null || author == null)
       showDialog(
           context: context,
@@ -62,13 +62,13 @@ class InsertBookState extends State<InsertBook> {
             return SimpleDialog(title: Text("Type a valid title/author."));
           });
     else {
-      DBProvider.db.newBook(Book(
+      await DBProvider.db.newBook(Book(
           title: title,
           author: author,
           picture: "verticalLargeNoDarkmode.PNG"));
       Navigator.pop(context);
-      setState(() {});
     }
   }
+
 }
 
