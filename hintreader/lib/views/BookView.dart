@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hintreader/progbar/MyLinearProgressIndicator.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class BookView extends StatefulWidget {
   BookView(this.title, this.darkmode, this.size);
@@ -133,14 +134,9 @@ class _BookViewState extends State<BookView> {
       scrollDirection: Axis.vertical,
       //padding: EdgeInsets.all(8.0),
       children: <Widget>[
-        Image.asset(pic, fit: BoxFit.cover, height: 650, alignment: Alignment.center,),
-        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
+        new CachedNetworkImage(
+            imageUrl: "https://image.shutterstock.com/z/stock-vector-vector-icon-for-demo-1147776686.jpg"
+        )
       ],
     );
 
@@ -185,15 +181,10 @@ class _BookViewState extends State<BookView> {
       scrollDirection: Axis.vertical,
       //padding: EdgeInsets.all(8.0),
       children: <Widget>[
-        Image.asset(pic, fit: BoxFit.cover, height: 350, alignment: Alignment.center,),
-        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
-        Image.asset(pic, fit: BoxFit.cover, alignment: Alignment.center,),
+
+        new CachedNetworkImage(
+          imageUrl: "https://image.shutterstock.com/z/stock-vector-vector-icon-for-demo-1147776686.jpg"
+        ),
       ],
     );
 
@@ -204,4 +195,5 @@ class _BookViewState extends State<BookView> {
   calculateProgressBar() {
     return 0.335;
   }
+
 }
