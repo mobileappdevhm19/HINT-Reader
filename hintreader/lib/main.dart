@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hintreader/views/BookshelfView.dart';
+import 'package:hintreader/nasaApi.dart';
 
 void main() => runApp(MyApp());
 
@@ -38,7 +39,8 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primaryColor: Colors.grey[200],
       ),
-      home: Bookshelf("My bookshelf"),
+      //home: Bookshelf("My bookshelf"),
+      home: nasaApi(),
     );
   }
 }
