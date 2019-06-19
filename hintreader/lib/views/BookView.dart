@@ -110,23 +110,23 @@ class _BookViewState extends State<BookView> {
     String pic;
     if (darkmode) {
       if (size == 0) {
-        pic = "assets/verticalNormalDarkmode.PNG";
+        pic = "https://raw.githubusercontent.com/mobileappdevhm19/HINT-Reader/master/hintreader/assets/verticalNormalDarkmode.PNG";
       }
       else if (size == -1) {
-        pic = "assets/verticalLargeDarkmode.PNG";
+        pic = "https://raw.githubusercontent.com/mobileappdevhm19/HINT-Reader/master/hintreader/assets/verticalLargeDarkmode.PNG";
       }
       else { //size == 1
-        pic = "assets/verticalSmallDarkmode.PNG";
+        pic = "https://raw.githubusercontent.com/mobileappdevhm19/HINT-Reader/master/hintreader/assets/verticalSmallDarkmode.PNG";
       }
     } else { // no dark mode
       if (size == 0) {
-        pic = "assets/verticalNormalNoDarkmode.PNG";
+        pic = "https://raw.githubusercontent.com/mobileappdevhm19/HINT-Reader/master/hintreader/assets/verticalNormalNoDarkmode.PNG";
       }
       else if (size == -1) {
-        pic = "assets/verticalLargeNoDarkmode.PNG";
+        pic = "https://raw.githubusercontent.com/mobileappdevhm19/HINT-Reader/master/hintreader/assets/verticalLargeNoDarkmode.PNG";
       }
       else { //size == 1
-        pic = "assets/verticalSmallNoDarkmode.PNG";
+        pic = "https://raw.githubusercontent.com/mobileappdevhm19/HINT-Reader/master/hintreader/assets/verticalSmallNoDarkmode.PNG";
       }
     }
 
@@ -135,7 +135,7 @@ class _BookViewState extends State<BookView> {
       //padding: EdgeInsets.all(8.0),
       children: <Widget>[
         new CachedNetworkImage(
-            imageUrl: "https://image.shutterstock.com/z/stock-vector-vector-icon-for-demo-1147776686.jpg"
+            imageUrl: pic
         )
       ],
     );
@@ -157,23 +157,23 @@ class _BookViewState extends State<BookView> {
     String pic;
     if (darkmode) {
       if (size == 0) {
-        pic = "assets/horizontalNormalDarkmode.PNG";
+        pic = "https://raw.githubusercontent.com/mobileappdevhm19/HINT-Reader/master/hintreader/assets/horizontalNormalDarkmode.PNG";
       }
       else if (size == -1) {
-        pic = "assets/horizontalLargeDarkmode.PNG";
+        pic = "https://raw.githubusercontent.com/mobileappdevhm19/HINT-Reader/master/hintreader/assets/horizontalLargeDarkmode.PNG";
       }
       else { //size == 1
-        pic = "assets/horizontalSmallDarkmode.PNG";
+        pic = "https://raw.githubusercontent.com/mobileappdevhm19/HINT-Reader/master/hintreader/assets/horizontalSmallDarkmode.PNG";
       }
     } else { // no dark mode
       if (size == 0) {
-        pic = "assets/horizontalNormalNoDarkmode.PNG";
+        pic = "https://raw.githubusercontent.com/mobileappdevhm19/HINT-Reader/master/hintreader/assets/horizontalNormalNoDarkmode.PNG";
       }
       else if (size == -1) {
-        pic = "assets/horizontalLargeNoDarkmode.PNG";
+        pic = "https://raw.githubusercontent.com/mobileappdevhm19/HINT-Reader/master/hintreader/assets/horizontalLargeNoDarkmode.PNG";
       }
       else { //size == 1
-        pic = "assets/horizontalSmallNoDarkmode.PNG";
+        pic = "https://raw.githubusercontent.com/mobileappdevhm19/HINT-Reader/master/hintreader/assets/horizontalSmallNoDarkmode.PNG";
       }
     }
 
@@ -183,7 +183,7 @@ class _BookViewState extends State<BookView> {
       children: <Widget>[
 
         new CachedNetworkImage(
-          imageUrl: "https://image.shutterstock.com/z/stock-vector-vector-icon-for-demo-1147776686.jpg"
+          imageUrl: pic
         ),
       ],
     );
