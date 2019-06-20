@@ -145,8 +145,7 @@ class _BookViewState extends State<BookView> {
                   Text("An Error occured:", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red)),
                   Text(error.toString(), textAlign: TextAlign.center, style: TextStyle(color: Colors.red))
                 ]
-            )
-    )
+            ))
         )
       ],
     );
