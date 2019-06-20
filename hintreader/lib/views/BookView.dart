@@ -135,7 +135,18 @@ class _BookViewState extends State<BookView> {
       //padding: EdgeInsets.all(8.0),
       children: <Widget>[
         new CachedNetworkImage(
-            imageUrl: pic
+            imageUrl: pic,
+            placeholder: (context, url) => new Center(child: CircularProgressIndicator()),
+            errorWidget: (context, url, error) => new Center(child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Icon(Icons.error, color: Colors.red),
+                  Text("An Error occured:", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red)),
+                  Text(error.toString(), textAlign: TextAlign.center, style: TextStyle(color: Colors.red))
+                ]
+            )
+    )
         )
       ],
     );
