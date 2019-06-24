@@ -1,0 +1,3 @@
+C:/Users/Maxi/AndroidStudioProjects/opengl_texture_widget_example_HINT/android/.externalNativeBuild/cmake/debug/x86/CMakeFiles/gl2jni.dir
+C:/Users/Maxi/AndroidStudioProjects/opengl_texture_widget_example_HINT/android/.externalNativeBuild/cmake/debug/x86/CMakeFiles/edit_cache.dir
+C:/Users/Maxi/AndroidStudioProjects/opengl_texture_widget_example_HINT/android/.externalNativeBuild/cmake/debug/x86/CMakeFiles/rebuild_cache.dir

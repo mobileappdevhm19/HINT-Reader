@@ -1,0 +1,16 @@
+{
+  "buildFiles": [
+    "C:\\Users\\Maxi\\AndroidStudioProjects\\opengl_texture_widget_example_HINT\\android\\src\\main\\cpp\\CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "C:\\Users\\Maxi\\AppData\\Local\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\Users\\Maxi\\AndroidStudioProjects\\opengl_texture_widget_example_HINT\\android\\.externalNativeBuild\\cmake\\debug\\arm64-v8a --target clean"
+  ],
+  "libraries": {
+    "gl2jni-Debug-arm64-v8a": {
+      "artifactName": "gl2jni",
+      "buildCommand": "C:\\Users\\Maxi\\AppData\\Local\\Android\\sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\Users\\Maxi\\AndroidStudioProjects\\opengl_texture_widget_example_HINT\\android\\.externalNativeBuild\\cmake\\debug\\arm64-v8a --target gl2jni",
+      "abi": "arm64-v8a",
+      "output": "C:\\Users\\Maxi\\AndroidStudioProjects\\opengl_texture_widget_example_HINT\\example\\build\\opengl_texture\\intermediates\\cmake\\debug\\obj\\arm64-v8a\\libgl2jni.so"
+    }
+  }
+}
