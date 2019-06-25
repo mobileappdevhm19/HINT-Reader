@@ -63,6 +63,7 @@ class _BookViewState extends State<BookView> {
     return new MaterialApp(
       home: new Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.grey[200],
             bottom: MyLinearProgressIndicator(
               backgroundColor: colorCustom,
               value: calculateProgressBar(),

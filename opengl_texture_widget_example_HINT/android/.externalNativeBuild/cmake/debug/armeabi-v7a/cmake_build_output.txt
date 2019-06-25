@@ -12,4 +12,4 @@
 -- Detecting CXX compile features - done
 -- Configuring done
 -- Generating done
--- Build files have been written to: C:/Users/Maxi/AndroidStudioProjects/opengl_texture_widget_example_HINT/android/.externalNativeBuild/cmake/debug/armeabi-v7a
+-- Build files have been written to: C:/Users/Maxi/AndroidStudioProjects/HINT-Reader/opengl_texture_widget_example_HINT/android/.externalNativeBuild/cmake/debug/armeabi-v7a
