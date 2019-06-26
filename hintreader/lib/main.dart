@@ -1,9 +1,13 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
 import 'package:hintreader/views/BookshelfView.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+
+  FirebaseAnalytics analytics = FirebaseAnalytics();
   // This widget is the root of your application.
   static Map<int, Color> color =
   {
@@ -26,6 +30,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       //debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
+      navigatorObservers: [
+        FirebaseAnalyticsObserver(analytics: analytics),
+      ],
       theme: ThemeData(
         // This is the theme of your application.
         //

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1040862365052",
+    "firebase_url": "https://hintreader-4c6ed.firebaseio.com",
+    "project_id": "hintreader-4c6ed",
+    "storage_bucket": "hintreader-4c6ed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1040862365052:android:7b9cc12e09b71a6c",
+        "android_client_info": {
+          "package_name": "hintreader.hintreader"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1040862365052-okbju9jljgs474h3dv4iakk8ceji1k0h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQLuhOeaXyszS7OAIc2SKFHSYrXwYHHYs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1040862365052-okbju9jljgs474h3dv4iakk8ceji1k0h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

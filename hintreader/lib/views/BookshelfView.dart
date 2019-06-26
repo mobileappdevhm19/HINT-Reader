@@ -5,6 +5,8 @@ import 'package:hintreader/BookModel.dart';
 import 'package:hintreader/database.dart';
 import 'package:hintreader/views/insertBook.dart';
 import 'package:hintreader/views/deleteBook.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 
 class Bookshelf extends StatefulWidget {
   Bookshelf(this.title);
@@ -25,6 +27,10 @@ class _BookshelfState extends State<Bookshelf>
   List<Book> _books;
   List<Book> _openedBooks;
 
+  static FirebaseAnalytics analytics = FirebaseAnalytics();
+  static FirebaseAnalyticsObserver observer =
+  FirebaseAnalyticsObserver(analytics: analytics);
+
   @override
   Widget build(BuildContext context) {
     //this is needed to update the openedBook list
@@ -38,6 +44,8 @@ class _BookshelfState extends State<Bookshelf>
           FlatButton(
             child: Icon(Icons.delete_sweep, color: Colors.orange),
             onPressed: () => {
+              _sendAnalyticsEvent(),
+              // ignore: sdk_version_set_literal
               showDialog(
                   context: context,
                   builder: (context) {
@@ -202,5 +210,10 @@ class _BookshelfState extends State<Bookshelf>
 
     print("width: " + width.toString());
     print("height: " + height.toString());
+  }
+
+  Future<void> _sendAnalyticsEvent() async {
+    await analytics.logEvent(name: "test");
+    print("sended log");
   }
 }
