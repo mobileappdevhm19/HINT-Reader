@@ -13,7 +13,7 @@ These instructions are meant for Windows 10, compiling the project for Android 8
 
 * Install through the Android Studio SDK Manager
 * Go to ~/AppData/Local/Android/Sdk/ndk-bundle/toolchains
-* cp aarch64-linux-android-4.9 mips64el-linux-android
+* Copy the folder aarch64-linux-android-4.9 and rename it mips64el-linux-android
 
 ## CMake
 
@@ -22,8 +22,8 @@ These instructions are meant for Windows 10, compiling the project for Android 8
 ## Set the Windows Environment Variables accordingly
 
 ## GLM
-* download https://github.com/g-truc/glm/releases/tag/0.9.9.5
-* mv to ~/AppData/Local/Android/SDK/ndk-bundle/toolchain/llvm/prebuilt/windowsx86_64/sysroot/usr/include/glm
+* Download https://github.com/g-truc/glm/releases/tag/0.9.9.5
+* Move the contained GLM folder to ~/AppData/Local/Android/SDK/ndk-bundle/toolchain/llvm/prebuilt/windowsx86_64/sysroot/usr/include/glm
 
 
 ***
