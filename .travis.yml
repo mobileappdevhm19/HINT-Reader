@@ -36,7 +36,7 @@ env:
 - BUILD_TIME=$(date +'%Y%m%d%H%M%S') APK_PATH="${TRAVIS_TAG}_${BUILD_TIME}_hintreader.apk"
 
 install:
-- cd opengl_texture_widget_example_HINT/exmaple
+- cd opengl_texture_widget_example_HINT/example
 - git clone https://github.com/flutter/flutter.git -b stable --depth 1
 - export PATH=./flutter/bin:$PATH
 - flutter doctor
