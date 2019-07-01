@@ -1,3 +1,3 @@
 # ninja log v5
-0	461	0	CMakeFiles/gl2jni.dir/gl_code.cpp.o	5fa15adaacaf48d5
-464	559	0	C:/Users/Maxi/AndroidStudioProjects/HINT-Reader/opengl_texture_widget_example_HINT/example/build/opengl_texture/intermediates/cmake/debug/obj/x86/libgl2jni.so	a941d8c79ecf90f5
+1	657	0	CMakeFiles/gl2jni.dir/gl_code.cpp.o	5fa15adaacaf48d5
+660	802	0	C:/Users/Maxi/AndroidStudioProjects/HINT-Reader/opengl_texture_widget_example_HINT/example/build/opengl_texture/intermediates/cmake/debug/obj/x86/libgl2jni.so	a941d8c79ecf90f5
