@@ -8,6 +8,16 @@
 
 ***
 
+## Latest Release
+
+GitHub binaries
+https://github.com/mobileappdevhm19/HINT-Reader/releases
+
+Google Play Store (closed beta testing)
+https://play.google.com/apps/testing/hintreader.hintreader
+
+***
+
 ## Installation Instructions
 
 So far, compilation does not work "out of the box".
