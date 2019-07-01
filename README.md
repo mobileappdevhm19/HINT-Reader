@@ -1,7 +1,5 @@
 # HINT Reader
 
-![Hintreader-Logo](https://raw.githubusercontent.com/mobileappdevhm19/apps4students-team-3/gh-pages/wiki/icon_hintreader_yellow.png)
-
 **THE POWER OF TeX, THE CONVENIENCE OF EPUB**
 
 A prototype electronic book reader for the as of now unpublished HINT format.
