@@ -2,8 +2,13 @@
 
 ![Hintreader-Logo](https://raw.githubusercontent.com/mobileappdevhm19/apps4students-team-3/gh-pages/wiki/icon_hintreader_yellow.png)
 
-![Bookshelf View](https://raw.githubusercontent.com/mobileappdevhm19/HINT-Reader/gh-pages/wiki/screenshots_secondrelease/bookshelfview_newbook.png)
+**THE POWER OF TeX, THE CONVENIENCE OF EPUB**
 
+A prototype electronic book reader for the as of now unpublished HINT format.
+
+The main goal of the project was to provide a prototype view for displaying HINT content by embedding a C-based backend into a mobile application, as well as provide modern eReader features users are likely to expect.
+
+![Bookshelf View](https://raw.githubusercontent.com/mobileappdevhm19/HINT-Reader/gh-pages/wiki/screenshots_secondrelease/bookshelfview_newbook.png)&nbsp;
 ![Book View](https://raw.githubusercontent.com/mobileappdevhm19/HINT-Reader/gh-pages/wiki/screenshots_secondrelease/light_normal.png)
 
 ***
