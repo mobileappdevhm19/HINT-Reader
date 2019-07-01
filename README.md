@@ -8,7 +8,7 @@
 
 ***
 
-## openGL Backend Dependencies
+## Installation Instructions
 
 So far, compilation does not work "out of the box".
 Here is a *hopefully* comprehensive list of steps to get the project working.
