@@ -36,7 +36,7 @@ env:
 - BUILD_TIME=$(date +'%Y%m%d%H%M%S') APK_PATH="${TRAVIS_TAG}_${BUILD_TIME}_hintreader.apk"
 
 install:
-- cd opengl_texture_widget_example_HINT
+- cd opengl_texture_widget_example_HINT/exmaple
 - git clone https://github.com/flutter/flutter.git -b stable --depth 1
 - export PATH=./flutter/bin:$PATH
 - flutter doctor
@@ -44,9 +44,7 @@ install:
 
 script:
 - mkdir -p ~/.gradle && echo "org.gradle.daemon=false" >> ~/.gradle/gradle.properties
-- cd example
 - flutter packages get
-- flutter test --coverage
 
 after_success:
 - coveralls-lcov coverage/lcov.info
