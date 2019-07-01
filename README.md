@@ -2,6 +2,10 @@
 
 ![Hintreader-Logo](https://raw.githubusercontent.com/mobileappdevhm19/apps4students-team-3/gh-pages/wiki/icon_hintreader_yellow.png)
 
+![Bookshelf View](https://raw.githubusercontent.com/mobileappdevhm19/HINT-Reader/gh-pages/wiki/screenshots_secondrelease/bookshelfview_newbook.png)
+
+![Book View](https://raw.githubusercontent.com/mobileappdevhm19/HINT-Reader/gh-pages/wiki/screenshots_secondrelease/light_normal.png)
+
 ***
 
 ## openGL Backend Dependencies
