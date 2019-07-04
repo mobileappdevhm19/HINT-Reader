@@ -3,6 +3,10 @@
 [![Build Status](https://travis-ci.org/mobileappdevhm19/HINT-Reader.svg?branch=master)](https://travis-ci.org/mobileappdevhm19/HINT-Reader)&nbsp;
 [![Coverage Status](https://coveralls.io/repos/github/mobileappdevhm19/HINT-Reader/badge.svg?branch=master)](https://coveralls.io/github/mobileappdevhm19/HINT-Reader?branch=master)
 
+_Development branch:_<br>
+[![Build Status](https://travis-ci.org/mobileappdevhm19/HINT-Reader.svg?branch=develop)](https://travis-ci.org/mobileappdevhm19/HINT-Reader)&nbsp;
+[![Coverage Status](https://coveralls.io/repos/github/mobileappdevhm19/HINT-Reader/badge.svg?branch=develop)](https://coveralls.io/github/mobileappdevhm19/HINT-Reader?branch=develop)
+
 **THE POWER OF TeX, THE CONVENIENCE OF EPUB**
 
 A prototype electronic book reader for the as of now unpublished HINT format.
