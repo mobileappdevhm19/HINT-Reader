@@ -20,11 +20,10 @@ The main goal of the project was to provide a prototype view for displaying HINT
 
 ## Latest Release
 
-GitHub binaries
-https://github.com/mobileappdevhm19/HINT-Reader/releases
+[Releases (GitHub Binaries)](https://github.com/mobileappdevhm19/HINT-Reader/releases)
 
-Google Play Store (closed beta testing)
-https://play.google.com/apps/testing/hintreader.hintreader
+
+[Google Play Store (closed beta testing)](https://play.google.com/apps/testing/hintreader.hintreader)
 
 ***
 
