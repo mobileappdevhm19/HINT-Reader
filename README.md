@@ -16,6 +16,7 @@ The main goal of the project was to provide a prototype view for displaying HINT
 ![Bookshelf View](https://raw.githubusercontent.com/mobileappdevhm19/HINT-Reader/gh-pages/wiki/screenshots_secondrelease/bookshelfview_newbook.png)&nbsp;
 ![Book View](https://raw.githubusercontent.com/mobileappdevhm19/HINT-Reader/gh-pages/wiki/screenshots_secondrelease/light_normal.png)
 
+[Check our GitHub Pages Page for a better overview!](https://mobileappdevhm19.github.io/HINT-Reader/)
 ***
 
 ## Latest Release
