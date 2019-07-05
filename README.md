@@ -45,8 +45,11 @@ These instructions are meant for Windows 10, compiling the project for Android 8
 ### CMake
 
 * Install Version 3.6.0-rc2
+* cmake is in C:\Users\<USERNAME>\AppData\Local\Android\sdk\cmake\3.6.4111459
+
 
 ## Set the Windows Environment Variables accordingly
+* add C:\Users\<USERNAME>\AppData\Local\Android\sdk\cmake\3.6.4111459\bin to PATH Variable in environment variables
 
 ### GLM
 * Download https://github.com/g-truc/glm/releases/tag/0.9.9.5
